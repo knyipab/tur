@@ -1,0 +1,9 @@
+#!/bin/bash
+export WINEPREFIX="${HOME}/.dngconverter/wine"
+
+if [ ! -d "${HOME}"/.dngconverter ] ; then
+  mkdir -p "${HOME}/.dngconverter/wine/drive_c/ProgramData/Adobe" || exit 1
+  ln -s "$PREFIX"/share/dngconverter/CameraRaw "${HOME}/.dngconverter/wine/drive_c/ProgramData/Adobe/CameraRaw"
+fi
+
+WINEDLLOVERRIDES="mscoree=,mshtml=,api-ms-win-core-winrt-error-l1-1-0=" wine "$PREFIX/share/dngconverter/Adobe DNG Converter/Adobe DNG Converter.exe" "$@"
