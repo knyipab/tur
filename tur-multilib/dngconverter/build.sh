@@ -44,5 +44,7 @@ termux_step_make_install() {
     mv "${TERMUX_PKG_SRCDIR}/tmp/env/drive_c/ProgramData/Adobe/"* "${TERMUX_PREFIX}/share/${TERMUX_PKG_NAME}/"
     # find "${TERMUX_PREFIX}" -type d -exec chmod 755 "{}" \;
     # find "${TERMUX_PREFIX}" -type f -exec chmod 644 "{}" \;
-    cp "${TERMUX_PKG_BUILDER_DIR}/dngconverter" "${TERMUX_PREFIX}/bin/"
+    cp -a "${TERMUX_PKG_BUILDER_DIR}/dngconverter" "${TERMUX_PREFIX}/bin/"
+    install -p -D "${TERMUX_PKG_BUILDER_DIR}/dngconverter.desktop" "${TERMUX_PREFIX}/share/applications/"
+    install -p -D "${TERMUX_PKG_BUILDER_DIR}/dngconverter.svg" "${TERMUX_PREFIX}/share/icons/hicolor/scalable/apps/"
 }

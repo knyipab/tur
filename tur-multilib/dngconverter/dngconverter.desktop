@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Adobe DNG Converter
+Comment=Adobe DNG Converter
+Exec=dngconverter
+Terminal=false
+Icon=dngconverter
+Type=Application
+Categories=Graphics;Photography;
