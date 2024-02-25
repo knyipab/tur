@@ -1,0 +1,59 @@
+diff --git a/src/modules/qt/consumer_qglsl.cpp b/src/modules/qt/consumer_qglsl.cpp
+index b5d4616..6d1f0ca 100644
+--- a/src/modules/qt/consumer_qglsl.cpp
++++ b/src/modules/qt/consumer_qglsl.cpp
+@@ -23,7 +23,9 @@
+ #include <QtGlobal>
+ 
+ #include <QOffscreenSurface>
++#ifndef __ANDROID__
+ #include <QOpenGLContext>
++#endif
+ #include <QThread>
+ 
+ typedef void *(*thread_function_t)(void *);
+@@ -35,7 +37,9 @@ public:
+         : QThread(0)
+         , m_function(function)
+         , m_data(data)
++#ifndef __ANDROID__
+         , m_context(new QOpenGLContext)
++#endif
+         , m_surface(new QOffscreenSurface)
+     {
+         QSurfaceFormat format;
+@@ -44,9 +48,11 @@ public:
+         format.setMinorVersion(2);
+         format.setDepthBufferSize(0);
+         format.setStencilBufferSize(0);
++#ifndef __ANDROID__
+         m_context->setFormat(format);
+         m_context->create();
+         m_context->moveToThread(this);
++#endif
+         m_surface->setFormat(format);
+         m_surface->create();
+     }
+@@ -55,16 +61,22 @@ public:
+ protected:
+     void run()
+     {
++#ifndef __ANDROID__
+         Q_ASSERT(m_context->isValid());
+         m_context->makeCurrent(m_surface.get());
++#endif
+         m_function(m_data);
++#ifndef __ANDROID__
+         m_context->doneCurrent();
++#endif
+     }
+ 
+ private:
+     thread_function_t m_function;
+     void *m_data;
++#ifndef __ANDROID__
+     std::unique_ptr<QOpenGLContext> m_context;
++#endif
+     std::unique_ptr<QOffscreenSurface> m_surface;
+ };
+ 
