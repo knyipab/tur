@@ -11,8 +11,9 @@ TERMUX_PKG_BUILD_DEPENDS="vulkan-headers"
 # gtk3 dependency is a run-time dependency only for the gtk platformtheme subpackage
 TERMUX_PKG_BUILD_DEPENDS="gtk3"
 TERMUX_PKG_CONFLICTS="qt5-qtbase"
+TERMUX_PKG_REPLACES="qt5-qtbase"
 TERMUX_PKG_PROVIDES="qt5-qtbase"
-TERMUX_PKG_SUGGESTS="qt5-qmake"
+# TERMUX_PKG_SUGGESTS="qt5-qmake"
 TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_NO_STATICSPLIT=true
 
@@ -23,7 +24,7 @@ bin/syncqt.pl
 "
 
 # Replacing the old qt5-base packages
-TERMUX_PKG_REPLACES="qt5-base"
+# TERMUX_PKG_REPLACES="qt5-base"
 TERMUX_PKG_BREAKS="qt5-x11extras, qt5-tools, qt5-declarative"
 
 termux_step_pre_configure () {

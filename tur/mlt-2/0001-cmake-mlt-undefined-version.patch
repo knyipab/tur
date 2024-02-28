@@ -1,0 +1,17 @@
+diff --git a/src/framework/CMakeLists.txt b/src/framework/CMakeLists.txt
+index e17e43c..0dc7f06 100644
+--- a/src/framework/CMakeLists.txt
++++ b/src/framework/CMakeLists.txt
+@@ -115,7 +115,11 @@ if(NOT (WIN32 OR RELOCATABLE))
+     target_compile_definitions(mlt PRIVATE PREFIX_DATA="${CMAKE_INSTALL_FULL_DATADIR}/mlt" PREFIX_LIB="${CMAKE_INSTALL_FULL_LIBDIR}/mlt")
+   else()
+     target_compile_definitions(mlt PRIVATE PREFIX_DATA="${CMAKE_INSTALL_FULL_DATADIR}/mlt-${MLT_VERSION_MAJOR}" PREFIX_LIB="${CMAKE_INSTALL_FULL_LIBDIR}/mlt-${MLT_VERSION_MAJOR}")
+-    target_link_options(mlt PRIVATE -Wl,--version-script=${CMAKE_CURRENT_SOURCE_DIR}/mlt.vers)
++    if (CMAKE_SYSTEM_NAME STREQUAL "Android")
++      target_link_options(mlt PRIVATE -Wl,--undefined-version,--version-script=${CMAKE_CURRENT_SOURCE_DIR}/mlt.vers)
++    else()
++      target_link_options(mlt PRIVATE -Wl,--version-script=${CMAKE_CURRENT_SOURCE_DIR}/mlt.vers)
++    endif()
+     set_target_properties(mlt PROPERTIES LINK_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/mlt.vers)
+   endif()
+ elseif(RELOCATABLE)
