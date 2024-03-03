@@ -7,7 +7,10 @@ TERMUX_PKG_VERSION="1.0.3"
 TERMUX_PKG_SRCURL="https://gitlab.freedesktop.org/pipewire/pipewire/-/archive/${TERMUX_PKG_VERSION}/pipewire-${TERMUX_PKG_VERSION}.tar.bz2"
 TERMUX_PKG_SHA256=344d861efe19e9b8cd2389811fe2bdfb4f70ba640e271d92950d0899c0326181
 TERMUX_PKG_AUTO_UPDATE=true
-TERMUX_PKG_DEPENDS="ffmpeg, glib, libc++, liblua54, libopus, libsndfile, libwebrtc-audio-processing, lilv, ncurses, openssl, pulseaudio, readline"
+TERMUX_PKG_DEPENDS="ffmpeg, glib, libc++, liblua54, libopus, libsndfile, libwebrtc-audio-processing, lilv, ncurses, openssl, readline"
+TERMUX_PKG_CONFLICTS="pipewire"
+TERMUX_PKG_REPLACES="pipewire"
+TERMUX_PKG_PROVIDES="pipewire"
 
 # 'media-session' session-managers is disabled as it requires alsa.
 # Since we are building without x11, dbus is disabled.
@@ -18,7 +21,7 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 -Dexamples=disabled
 -Dpipewire-alsa=disabled
 -Dalsa=disabled
--Dpipewire-jack=disabled
+-Dpipewire-jack=enabled
 -Djack=disabled
 -Ddbus=disabled
 -Dsession-managers=['wireplumber']

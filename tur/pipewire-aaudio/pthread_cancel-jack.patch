@@ -1,0 +1,19 @@
+diff --git a/pipewire-jack/src/pipewire-jack.c b/pipewire-jack/src/pipewire-jack.c
+index 27c6d25..097ba98 100644
+--- a/pipewire-jack/src/pipewire-jack.c
++++ b/pipewire-jack/src/pipewire-jack.c
+@@ -7006,8 +7006,14 @@ int jack_client_kill_thread(jack_client_t* client, jack_native_thread_t thread)
+ 
+ 	return_val_if_fail(client != NULL, -EINVAL);
+ 
++#ifndef __ANDROID__
+ 	pw_log_debug("cancel thread %p", (void *) thread);
+ 	pthread_cancel(thread);
++#else
++	// corresponding patches are needed on the client side code (libjack)
++	pw_log_debug("cancel thread %p (used pthread_kill as cancel not available on android)", (void *) thread);
++	pthread_kill(thread, SIGUSR2);
++#endif
+ 	pw_log_debug("join thread %p", (void *) thread);
+ 	spa_thread_utils_join(&c->context.thread_utils, (struct spa_thread*)thread, &status);
+ 	pw_log_debug("stopped thread %p", (void *) thread);
