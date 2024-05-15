@@ -3,20 +3,18 @@ TERMUX_PKG_DESCRIPTION="RIFE, Real-Time Intermediate Flow Estimation for Video F
 TERMUX_PKG_LICENSE="MIT"
 TERMUX_PKG_MAINTAINER="@termux-user-repository"
 TERMUX_PKG_VERSION=20221029
-TERMUX_PKG_SRCURL=git+https://github.com/nihui/rife-ncnn-vulkan
-TERMUX_PKG_DEPENDS="libwebp, vulkan-loader"
+TERMUX_PKG_SRCURL=https://github.com/nihui/rife-ncnn-vulkan/archive/refs/tags/$TERMUX_PKG_VERSION.tar.gz
+TERMUX_PKG_DEPENDS="glslang, libncnn, libwebp, vulkan-loader"
 TERMUX_PKG_ANTI_BUILD_DEPENDS="vulkan-loader"
 TERMUX_PKG_BUILD_DEPENDS="vulkan-loader-generic"
-TERMUX_PKG_GIT_BRANCH=20221029
 TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_AUTO_UPDATE=true
-TERMUX_PKG_UPDATE_TAG_TYPE="newest-tag"
-TERMUX_PKG_EXTRA_CONFIGURE_ARGS="-DUSE_SYSTEM_WEBP=ON"
+TERMUX_PKG_EXTRA_CONFIGURE_ARGS="-DUSE_SYSTEM_WEBP=ON -DUSE_SYSTEM_NCNN=ON -DGLSLANG_TARGET_DIR=$TERMUX_PREFIX/lib/cmake/glslang/"
 TERMUX_PKG_CONFLICTS="rife-ncnn-vulkan-tntwise"
 
 termux_step_pre_configure () {
-	git submodule update --init --recursive "$TERMUX_PKG_SRCDIR"
 	mv "$TERMUX_PKG_SRCDIR/src/"* "$TERMUX_PKG_SRCDIR/"
+	sed -i -e 's/include\("\$\{GLSLANG_TARGET_DIR\}\/.*?.cmake"\)/include(\"\$\{GLSLANG_TARGET_DIR\}\/glslang-targets.cmake"\)/g' "$TERMUX_PKG_SRCDIR/CMakeLists.txt"
 	LDFLAGS+=" -llog -landroid"
 }
 
