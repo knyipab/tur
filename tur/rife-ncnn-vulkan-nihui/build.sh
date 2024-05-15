@@ -1,5 +1,5 @@
 TERMUX_PKG_HOMEPAGE=https://github.com/nihui/rife-ncnn-vulkan
-TERMUX_PKG_DESCRIPTION="RIFE, Real-Time Intermediate Flow Estimation for Video Frame Interpolation implemented with ncnn library"
+TERMUX_PKG_DESCRIPTION="RIFE for Video Frame Interpolation implemented with ncnn library"
 TERMUX_PKG_LICENSE="MIT"
 TERMUX_PKG_MAINTAINER="@termux-user-repository"
 TERMUX_PKG_VERSION=20221029
