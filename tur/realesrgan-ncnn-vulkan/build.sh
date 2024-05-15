@@ -69,8 +69,7 @@ termux_step_make_install () {
 	# install models
 	URL="https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesrgan-ncnn-vulkan-20220424-ubuntu.zip"
 	TMP_FILE="$(mktemp)"
-	mkdir -p "$TERMUX_PREFIX/opt/realesrgan-ncnn-vulkan/models"
 	curl -s -L -o "$TMP_FILE" "$URL" && \
-	unzip -q -d "$TERMUX_PREFIX/opt/realesrgan-ncnn-vulkan/models" "$TMP_FILE" "models/*"
+	unzip -q -d "$TERMUX_PREFIX/opt/realesrgan-ncnn-vulkan" "$TMP_FILE" "models/*"
 	rm "$TMP_FILE"
 }
