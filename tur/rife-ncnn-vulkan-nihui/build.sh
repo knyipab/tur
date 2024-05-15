@@ -15,7 +15,7 @@ TERMUX_PKG_CONFLICTS="rife-ncnn-vulkan-tntwise"
 
 termux_step_pre_configure () {
 	mv "$TERMUX_PKG_SRCDIR/src/"* "$TERMUX_PKG_SRCDIR/"
-	sed -i -e 's/include\("\$\{GLSLANG_TARGET_DIR\}\/.*?.cmake"\)/include(\"\$\{GLSLANG_TARGET_DIR\}\/glslang-targets.cmake"\)/g' "$TERMUX_PKG_SRCDIR/CMakeLists.txt"
+	sed -i -e 's/include("${GLSLANG_TARGET_DIR}\/.*.cmake")/include(\"\${GLSLANG_TARGET_DIR}\/glslang-targets.cmake"\)/g' "$TERMUX_PKG_SRCDIR/CMakeLists.txt"
 	LDFLAGS+=" -llog -landroid"
 }
 
