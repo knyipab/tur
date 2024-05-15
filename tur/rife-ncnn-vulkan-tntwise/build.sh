@@ -4,6 +4,7 @@ TERMUX_PKG_LICENSE="MIT"
 TERMUX_PKG_MAINTAINER="@termux-user-repository"
 TERMUX_PKG_VERSION=20240326
 TERMUX_PKG_SRCURL=https://github.com/TNTwise/rife-ncnn-vulkan/archive/refs/tags/$TERMUX_PKG_VERSION.tar.gz
+TERMUX_PKG_SHA256=9435d164b723500c4ce9cb22ed2a2b1fc1546943423c4b369cae48479db964f0
 TERMUX_PKG_DEPENDS="libwebp, vulkan-loader"
 TERMUX_PKG_ANTI_BUILD_DEPENDS="vulkan-loader"
 TERMUX_PKG_BUILD_DEPENDS="vulkan-loader-generic"
