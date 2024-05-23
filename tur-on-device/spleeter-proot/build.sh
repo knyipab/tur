@@ -33,6 +33,7 @@ rm -rf ~/miniconda3/miniconda.sh
 
 ~/miniconda3/bin/conda config --set auto_activate_base false
 ~/miniconda3/bin/conda create -n spleeter_py310 -y python=3.10
+~/miniconda3/bin/conda run -n spleeter_py310 pip install -U setuptools wheel
 ~/miniconda3/bin/conda run -n spleeter_py310 pip install --no-deps spleeter
 ~/miniconda3/bin/conda run -n spleeter_py310 pip install ffmpeg-python httpx==0.19.0 norbert typer==0.3.2
 ~/miniconda3/bin/conda run -n spleeter_py310 pip install pandas==1.5.3 tensorflow==2.10
