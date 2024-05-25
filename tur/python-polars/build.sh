@@ -2,9 +2,9 @@ TERMUX_PKG_HOMEPAGE=https://github.com/pola-rs/polars
 TERMUX_PKG_DESCRIPTION="Dataframes powered by a multithreaded, vectorized query engine, written in Rust"
 TERMUX_PKG_LICENSE="MIT"
 TERMUX_PKG_MAINTAINER="@termux-user-repository"
-TERMUX_PKG_VERSION="0.20.10"
+TERMUX_PKG_VERSION="0.20.26"
 TERMUX_PKG_SRCURL=https://github.com/pola-rs/polars/releases/download/py-$TERMUX_PKG_VERSION/polars-$TERMUX_PKG_VERSION.tar.gz
-TERMUX_PKG_SHA256=ab32a232916df61c9377edcb5893d0b1624d810444d8fa627f9885d33819a8b7
+TERMUX_PKG_SHA256=fa83d130562a5180a47f8763a7bb9f408dbbf51eafc1380e8a2951be8ce05a2c
 TERMUX_PKG_AUTO_UPDATE=true
 TERMUX_PKG_DEPENDS="libc++, python"
 TERMUX_PKG_PYTHON_COMMON_DEPS="wheel"
@@ -36,8 +36,6 @@ termux_pkg_auto_update() {
 }
 
 termux_step_pre_configure() {
-	_PYTHON_VERSION=$(. $TERMUX_SCRIPTDIR/packages/python/build.sh; echo $_MAJOR_VERSION)
-
 	termux_setup_cmake
 	termux_setup_rust
 
@@ -46,6 +44,7 @@ termux_step_pre_configure() {
 
 	rm -rf $CARGO_HOME/registry/src/*/cmake-*
 	rm -rf $CARGO_HOME/registry/src/*/jemalloc-sys-*
+	rm -rf $CARGO_HOME/registry/src/*/arboard-*
 	cargo fetch --target "${CARGO_TARGET_NAME}"
 
 	local p="cmake-0.1.50-src-lib.rs.diff"
@@ -60,6 +59,11 @@ termux_step_pre_configure() {
 		patch --silent -p1 -d ${d} < "$TERMUX_PKG_BUILDER_DIR/${p}"
 	done
 
+	p="arboard-dummy-platform.diff"
+	for d in $CARGO_HOME/registry/src/*/arboard-*; do
+		patch --silent -p1 -d ${d} < "$TERMUX_PKG_BUILDER_DIR/${p}"
+	done
+
 	local _CARGO_TARGET_LIBDIR="target/${CARGO_TARGET_NAME}/release/deps"
 	mkdir -p $_CARGO_TARGET_LIBDIR
 
@@ -71,7 +75,14 @@ termux_step_pre_configure() {
 	ln -sfT $(readlink -f $TERMUX_PREFIX/lib/libz.so.tmp) \
 		$_CARGO_TARGET_LIBDIR/libz.so
 
-	LDFLAGS+=" -Wl,--no-as-needed -lpython${_PYTHON_VERSION}"
+	LDFLAGS+=" -Wl,--no-as-needed -lpython${TERMUX_PYTHON_VERSION}"
+
+	# XXX: Don't know why, this is needed for `cmake` in rust to work properly
+	local _rtarget _renv
+	for _rtarget in {aarch64,i686,x86_64}-linux-android armv7-linux-androideabi; do
+		_renv="CFLAGS_${_rtarget//-/_}"
+		export $_renv+=" --target=${CCTERMUX_HOST_PLATFORM}"
+	done
 }
 
 termux_step_make() {
@@ -81,11 +92,11 @@ termux_step_make() {
 termux_step_make_install() {
 	export CARGO_BUILD_TARGET=${CARGO_TARGET_NAME}
 	export PYO3_CROSS_LIB_DIR=$TERMUX_PREFIX/lib
-	export PYTHONPATH=$TERMUX_PREFIX/lib/python${_PYTHON_VERSION}/site-packages
+	export PYTHONPATH=$TERMUX_PREFIX/lib/python${TERMUX_PYTHON_VERSION}/site-packages
 
 	build-python -m maturin build --release --skip-auditwheel --target $CARGO_BUILD_TARGET
 
-	pip install --no-deps ./target/wheels/*.whl --prefix $TERMUX_PREFIX 
+	pip install --no-deps ./target/wheels/*.whl --prefix $TERMUX_PREFIX
 }
 
 termux_step_post_make_install() {
@@ -98,4 +109,8 @@ termux_step_post_make_install() {
 termux_step_post_massage() {
 	rm -f lib/libz.so.1
 	rm -f lib/libz.so
+
+	rm -rf $CARGO_HOME/registry/src/*/cmake-*
+	rm -rf $CARGO_HOME/registry/src/*/jemalloc-sys-*
+	rm -rf $CARGO_HOME/registry/src/*/arboard-*
 }

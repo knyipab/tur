@@ -2,9 +2,9 @@ TERMUX_PKG_HOMEPAGE=https://github.com/hr3lxphr6j/bililive-go
 TERMUX_PKG_DESCRIPTION="A live streaming recording tool"
 TERMUX_PKG_LICENSE="GPL-3.0"
 TERMUX_PKG_MAINTAINER="2096779623 <admin@utermux.dev>"
-TERMUX_PKG_VERSION="0.7.24"
+TERMUX_PKG_VERSION="0.7.25"
 TERMUX_PKG_SRCURL=https://github.com/hr3lxphr6j/bililive-go/archive/refs/tags/v${TERMUX_PKG_VERSION}.tar.gz
-TERMUX_PKG_SHA256=60ab53b02a8c5a330bfea1ae797e4dbf0d7b512ef81d847f720d5fba0357d2bf
+TERMUX_PKG_SHA256=80f94987c96c5e6c6e27520fc3fcbfdb07b2fbb69bd471ac47e894755c7987de
 TERMUX_PKG_BUILD_DEPENDS="yarn"
 TERMUX_PKG_DEPENDS="ffmpeg"
 TERMUX_PKG_BUILD_IN_SRC=true
@@ -26,7 +26,7 @@ termux_step_make() {
 	-X github.com/hr3lxphr6j/bililive-go/src/consts.AppVersion=v${TERMUX_PKG_VERSION} \
 	-X github.com/hr3lxphr6j/bililive-go/src/consts.GitHash=$(git ls-remote https://github.com/hr3lxphr6j/bililive-go refs/tags/v${TERMUX_PKG_VERSION}|cut -f1) \
 	"
-	CGO_ENABLED=0 go build -tags "release" -o "$TERMUX_PKG_SRCDIR"/bililive-go -ldflags="$ldflags" "$TERMUX_PKG_SRCDIR"/src/cmd/bililive/
+	CGO_ENABLED=1 go build -tags "release" -o "$TERMUX_PKG_SRCDIR"/bililive-go -ldflags="$ldflags" "$TERMUX_PKG_SRCDIR"/src/cmd/bililive/
 }
 
 termux_step_make_install() {

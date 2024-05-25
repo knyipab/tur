@@ -2,9 +2,9 @@ TERMUX_PKG_HOMEPAGE=https://github.com/huggingface/tokenizers
 TERMUX_PKG_DESCRIPTION="Fast State-of-the-Art Tokenizers optimized for Research and Production"
 TERMUX_PKG_LICENSE="Apache-2.0"
 TERMUX_PKG_MAINTAINER="@termux-user-repository"
-TERMUX_PKG_VERSION="0.15.2"
+TERMUX_PKG_VERSION="0.19.1"
 TERMUX_PKG_SRCURL=https://github.com/huggingface/tokenizers/archive/refs/tags/v$TERMUX_PKG_VERSION.tar.gz
-TERMUX_PKG_SHA256=59b3fd70df18cf02349cdddbddc669409e4dae0d3de30fb449d1a83ba02007fd
+TERMUX_PKG_SHA256=53f5e644148c14cf2c429f8eb321cc7f75e3092973ca6b0ced5b516214a081bf
 TERMUX_PKG_AUTO_UPDATE=true
 TERMUX_PKG_DEPENDS="libc++, python, python-pip"
 TERMUX_PKG_PYTHON_COMMON_DEPS="wheel"
@@ -27,7 +27,7 @@ termux_step_pre_configure() {
 	termux_setup_rust
 
 	# Tokenizers uses some extra libs that requires `core` crates, but
-	# the toolchain provided by rustup doesn't have them (Android is at 
+	# the toolchain provided by rustup doesn't have them (Android is at
 	# tier 2). Use nightly toolchain and enable `build-std` feature to
 	# build these crates.
 	rustup toolchain install nightly
@@ -55,5 +55,5 @@ termux_step_make_install() {
 			./target/wheels/tokenizers-$TERMUX_PKG_VERSION-py311-none-any.whl
 	fi
 
-	pip install --no-deps ./target/wheels/*.whl --prefix $TERMUX_PREFIX 
+	pip install --no-deps ./target/wheels/*.whl --prefix $TERMUX_PREFIX
 }

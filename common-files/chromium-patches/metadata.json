@@ -4,38 +4,60 @@
     "end": 5789
   },
   "add-missing-typename/5790.patch": {
-    "start": 5790
+    "start": 5790,
+    "end": 6260,
+    "comment": "Disable since host clang-16"
   },
   "add-missing-typename-2/5735.patch": {
     "start": 5735,
     "end": 5767
   },
   "add-missing-typename-3/5790.patch": {
-    "start": 5790
+    "start": 5790,
+    "end": 6260,
+    "comment": "Disable since host clang-16"
   },
   "add-missing-typename-4/5790.patch": {
-    "start": 5790
+    "start": 5790,
+    "end": 6260,
+    "comment": "Disable since host clang-16"
   },
   "add-missing-typename-5/5845.patch": {
-    "start": 5845
+    "start": 5845,
+    "end": 6260,
+    "comment": "Disable since host clang-16"
   },
   "add-missing-typename-6/6099.patch": {
-    "start": 6099
+    "start": 6099,
+    "end": 6260,
+    "comment": "Disable since host clang-16"
   },
   "add-missing-typename-7/6099.patch": {
-    "start": 6099
+    "start": 6099,
+    "end": 6260,
+    "comment": "Disable since host clang-16"
   },
   "add-missing-typename-8/6167.patch": {
-    "start": 6167
+    "start": 6167,
+    "end": 6260,
+    "comment": "Disable since host clang-16"
   },
   "add-missing-typename-9/6167.patch": {
-    "start": 6167
+    "start": 6167,
+    "end": 6260,
+    "comment": "Disable since host clang-16"
   },
   "angle-fix-atomic/5615.patch": {
-    "start": 5615
+    "start": 5615,
+    "end": 6366
+  },
+  "angle-fix-atomic/6367.patch": {
+    "start": 6367,
+    "end": 6421
   },
   "angle-fix-specialization/5672.patch": {
-    "start": 5672
+    "start": 5672,
+    "end": 6366
   },
   "angle-no-android-jni/4389.patch": {
     "start": 4389
@@ -47,12 +69,21 @@
   "autofill_i18n_api-no-constexpr-string/6099.patch": {
     "start": 6099
   },
+  "autofill-unique_ids-no-constexpr-operator-equal/6261.patch": {
+    "start": 6261,
+    "end": 6366
+  },
   "avoid-constexpr-std-string/5672.patch": {
     "start": 5672,
     "end": 5775
   },
+  "avoid-constexpr-std-string-2/6422.patch": {
+    "start": 6422
+  },
   "avoid-emplace_back-struct/5938.patch": {
-    "start": 5938
+    "start": 5938,
+    "end": 6260,
+    "comment": "Disable since host clang-16"
   },
   "blink-fix-narrowing/5511.patch": {
     "start": 5481,
@@ -79,13 +110,20 @@
     "end": 6166
   },
   "blink-fix-structured-binding-declaration/6167.patch": {
-    "start": 6167
+    "start": 6167,
+    "end": 6167
   },
   "blink-font-constructor/5845.patch": {
-    "start": 5845
+    "start": 5845,
+    "end": 6260
+  },
+  "blink-font-constructor/6261.patch": {
+    "start": 6261
   },
   "blink-font-constructor-2/5938.patch": {
-    "start": 5938
+    "start": 5938,
+    "end": 6260,
+    "comment": "Disable since host clang-16"
   },
   "blink-impl-wtf-stacksize/4389.patch": {
     "start": 4389,
@@ -106,7 +144,9 @@
     "end": 5685
   },
   "chromedriver-vector-emplace_back/5790.patch": {
-    "start": 5790
+    "start": 5790,
+    "end": 6260,
+    "comment": "Disable since host clang-16"
   },
   "chromium-disable-sandbox/5359.patch": {
     "start": 5359,
@@ -127,14 +167,22 @@
     "end": 5551
   },
   "chromium-extensions-map/5359.patch": {
-    "start": 5359
+    "start": 5359,
+    "end": 6366
+  },
+  "chromium-extensions-map/6367.patch": {
+    "start": 6367
   },
   "chromium-fenced_frame-declare-destructor/5938.patch": {
     "start": 5938,
     "end": 6098
   },
   "chromium-fenced_frame-declare-destructor/6099.patch": {
-    "start": 6099
+    "start": 6099,
+    "end": 6421
+  },
+  "chromium-fenced_frame-declare-destructor/6422.patch": {
+    "start": 6422
   },
   "chromium-dns-class-constructor/5845.patch": {
     "start": 5845,
@@ -219,7 +267,9 @@
     "end": 5358
   },
   "chromium-no-atomic_flag/5359.patch": {
-    "start": 5359
+    "start": 5359,
+    "end": 6260,
+    "comment": "Disable since NDK r26"
   },
   "chromium-no-execinfo/4389.patch": {
     "start": 4389,
@@ -234,7 +284,15 @@
     "end": 6098
   },
   "chromium-no-execinfo/6099.patch": {
-    "start": 6099
+    "start": 6099,
+    "end": 6366
+  },
+  "chromium-no-execinfo/6367.patch": {
+    "start": 6367,
+    "end": 6421
+  },
+  "chromium-no-execinfo/6422.patch": {
+    "start": 6422
   },
   "chromium-no-futimes/4389.patch": {
     "start": 4389
@@ -262,7 +320,14 @@
     "end": 5614
   },
   "chromium-no-set-process-title/5615.patch": {
-    "start": 5615
+    "start": 5615,
+    "end": 6366
+  },
+  "chromium-no-set-process-title/6367.patch": {
+    "start": 6367
+  },
+  "chromium-numerics-byte_conversions-no-std-bit_cast/6312.patch": {
+    "start": 6312
   },
   "chromium-redefine-termios2/5359.patch": {
     "start": 5359
@@ -275,6 +340,10 @@
     "start": 5414,
     "end": 5562
   },
+  "chromium-strong_alias-no-constexpr-operator-equal/6261.patch": {
+    "start": 6261,
+    "end": 6366
+  },
   "chromium-struct-contructor/5790.patch": {
     "start": 5790,
     "end": 5844
@@ -285,6 +354,12 @@
   "chromium-ui-use-fabsf/5481.patch": {
     "start": 5481,
     "end": 5487
+  },
+  "compiler-clang-lib-dir/6312.patch": {
+    "start": 6312
+  },
+  "compiler-custom-rust-abi-target-triple/6312.patch": {
+    "start": 6312
   },
   "compiler-no-unused-but-set-variable/4389.patch": {
     "start": 4389,
@@ -331,7 +406,11 @@
     "end": 6166
   },
   "compiler-remove-unsupported-flags/6167.patch": {
-    "start": 6167
+    "start": 6167,
+    "end": 6260
+  },
+  "compiler-remove-unsupported-flags/6261.patch": {
+    "start": 6261
   },
   "compiler-use-android-target/4389.patch": {
     "start": 4389,
@@ -348,8 +427,15 @@
   "compiler-use-android-target/5414.patch": {
     "start": 5414
   },
+  "compiler-use-custom-libcxx-for-v8/6312.patch": {
+    "start": 6312
+  },
   "cpuinfo-android-arm/5249.patch": {
-    "start": 5249
+    "start": 5249,
+    "end": 6260
+  },
+  "cpuinfo-android-arm/6261.patch": {
+    "start": 6261
   },
   "crashpad-no-getdtablesize/4389.patch": {
     "start": 4389,
@@ -441,6 +527,9 @@
     "start": 4389,
     "end": 4472
   },
+  "libdav1d-config/6367.patch": {
+    "start": 6367
+  },
   "minigbm-no-android-log/5359.patch": {
     "start": 5359,
     "end": 5480
@@ -469,6 +558,10 @@
   "perfetto-no-pthread_getname_np/6099.patch": {
     "start": 6099
   },
+  "performance_manager-context_collection-no-constexpr-operator-equal/6312.patch": {
+    "start": 6312,
+    "end": 6366
+  },
   "persistent_histogram_allocator-constructor/6045.patch": {
     "start": 6045
   },
@@ -482,18 +575,60 @@
   "remove-usage-vector-three_way_compare/6167.patch": {
     "start": 6167
   },
+  "remove-usage-vector-three_way_compare-2/6367.patch": {
+    "start": 6367
+  },
+  "remove-usage-three_way_compare/6422.patch": {
+    "start": 6422
+  },
   "remove-xorg-from-build-deps/6167.patch": {
     "start": 6159,
     "end": 6225
   },
+  "remove-xorg-from-build-deps-2/6255.patch": {
+    "start": 6255
+  },
   "resource_attribution-query_params-no-constexpr-operator-equal/6167.patch": {
-    "start": 6167
+    "start": 6167,
+    "end": 6260
+  },
+  "resource_attribution-query_params-no-constexpr-operator-equal/6261.patch": {
+    "start": 6261,
+    "end": 6311
+  },
+  "resource_attribution-query_params-no-constexpr-operator-equal/6312.patch": {
+    "start": 6312,
+    "end": 6366
   },
   "revert-blink-v8-cxx20/6167.patch": {
-    "start": 6167
+    "start": 6167,
+    "end": 6260
+  },
+  "revert-blink-v8-cxx20/6261.patch": {
+    "start": 6261,
+    "end": 6311
+  },
+  "revert-blink-v8-cxx20/6312.patch": {
+    "start": 6312
+  },
+  "revert-blink-v8-cxx20-2/6261.patch": {
+    "start": 6261,
+    "end": 6311
+  },
+  "revert-blink-v8-cxx20-2/6312.patch": {
+    "start": 6312,
+    "end": 6421
+  },
+  "revert-blink-v8-cxx20-2/6422.patch": {
+    "start": 6422
   },
   "revert-rust-qr-scanner/6167.patch": {
-    "start": 6167
+    "start": 6167,
+    "end": 6260
+  },
+  "revert-rust-qr-scanner/6261.patch": {
+    "start": 6261,
+    "end": 6261
   },
   "revert-split-out-ios-shared-feed-protos/5615.patch": {
     "start": 5615,
@@ -502,6 +637,9 @@
   "script-add-ld-library-path/4389.patch": {
     "start": 9999999,
     "comment": "Disable since 115.0.5790.98-1"
+  },
+  "simple_url_pattern_matcher-no-constexpr-string/6312.patch" : {
+    "start": 6312
   },
   "sql-VirtualCursor-standard-layout/5359.patch": {
     "start": 5359,
@@ -535,7 +673,15 @@
     "end": 6044
   },
   "swiftshader-no-android/6045.patch": {
-    "start": 6045
+    "start": 6045,
+    "end": 6260
+  },
+  "swiftshader-no-android/6261.patch": {
+    "start": 6261,
+    "end": 6421
+  },
+  "swiftshader-no-android/6422.patch": {
+    "start": 6422
   },
   "swiftshader-no-spawn/5359.patch": {
     "start": 5359
@@ -547,6 +693,11 @@
     "start": 5359,
     "end": 5413
   },
+  "undo-internal-alloc/6261.patch": {
+    "start": 6261,
+    "end": 6261,
+    "comment": "Disable since 123.0.6312.58, from which clang and libcxx shipped by chromium is used to build host binaries"
+  },
   "unity-fix-dynamic-loaded-libraries/4389.patch": {
     "start": 4389
   },
@@ -554,10 +705,17 @@
     "start": 4389
   },
   "use-std_to_address-from-libcxx/6167.patch": {
-    "start": 6167
+    "start": 6167,
+    "end": 6260
+  },
+  "use-std_to_address-from-libcxx/6261.patch": {
+    "start": 6261,
+    "end": 6366
   },
   "v8-do-not-use-builtin-mul/5481.patch": {
-    "start": 5481
+    "start": 5481,
+    "end": 6260,
+    "comment": "Disable since host clang-16"
   },
   "v8-fix-compile-on-android-ndk/5993.patch": {
     "start": 5993
@@ -566,7 +724,8 @@
     "start": 5546
   },
   "v8-fix-non-ptr-compr-compilation-on-old-compilers/5938.patch": {
-    "start": 5938
+    "start": 5938,
+    "end": 6260
   },
   "v8-fix-trap-handler/5249.patch": {
     "start": 4961,
@@ -615,7 +774,11 @@
     "end": 6044
   },
   "x11-fix-dynamic-loaded-libraries/6045.patch": {
-    "start": 6045
+    "start": 6045,
+    "end": 6260
+  },
+  "x11-fix-dynamic-loaded-libraries/6261.patch": {
+    "start": 6261
   },
   "y-exclusive_sync_wait_info-constructor/6099.patch": {
     "start": 6099
@@ -630,7 +793,11 @@
     "start": 6099
   },
   "y-loss_based_bwe_v2_config-constructor/6099.patch": {
-    "start": 6099
+    "start": 6099,
+    "end": 6260
+  },
+  "y-loss_based_bwe_v2_config-constructor/6261.patch": {
+    "start": 6261
   },
   "y-mime_util_xdg-file_info-consturctor/6167.patch": {
     "start": 6167
@@ -648,12 +815,16 @@
     "start": 5615,
     "end": 5734
   },
+  "z-iwyu-blink-include-bitset-2/6261.patch": {
+    "start": 6261
+  },
   "z-iwyu-blink-include-cstring/4961.patch": {
     "start": 4961,
     "end": 5005
   },
   "z-iwyu-blink-include-mutex/6167.patch": {
-    "start": 6167
+    "start": 6167,
+    "end": 6260
   },
   "z-iwyu-blink-include-variant/5845.patch": {
     "start": 5845,
@@ -672,10 +843,12 @@
     "end": 6044
   },
   "z-iwyu-chromium-include-cmath/5249.patch": {
-    "start": 4961
+    "start": 4961,
+    "end": 6260
   },
   "z-iwyu-chromium-include-compare/5735.patch": {
-    "start": 5735
+    "start": 5735,
+    "end": 6260
   },
   "z-iwyu-chromium-include-ctime/4389.patch": {
     "start": 4389,
@@ -686,10 +859,15 @@
     "end": 5844
   },
   "z-iwyu-crypto-hkdf-include-vector/6167.patch": {
-    "start": 6167
+    "start": 6167,
+    "end": 6260
   },
   "z-iwyu-display_color_management-include-string/6167.patch": {
-    "start": 6167
+    "start": 6167,
+    "end": 6260
+  },
+  "z-iwyu-display_color_management-include-string/6261.patch": {
+    "start": 6261
   },
   "z-iwyu-gfx-include-bitset/6167.patch": {
     "start": 6167
@@ -700,6 +878,9 @@
   },
   "z-iwyu-material_color_utilities-include-cmath/5938.patch": {
     "start": 5938
+  },
+  "z-iwyu-preview_cancel_reason-include-string/6312.patch": {
+    "start": 6312
   },
   "z-iwyu-sensor_reading-inttypes/5993.patch": {
     "start": 5993,
@@ -718,7 +899,8 @@
     "end": 5816
   },
   "z-iwyu-webauthn-variant/5672.patch": {
-    "start": 5672
+    "start": 5672,
+    "end": 6421
   },
   "z-iwyu-webrtc_overrides-include-vector/5414.patch": {
     "start": 5414,
