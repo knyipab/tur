@@ -1,17 +1,20 @@
 TERMUX_PKG_HOMEPAGE=https://www.qt.io/
-TERMUX_PKG_DESCRIPTION="Qt SVG Library"
+TERMUX_PKG_DESCRIPTION="Qt X11 Extras enables the Qt programmer to write applications for the Linux/X11 platform"
 TERMUX_PKG_LICENSE="LGPL-3.0"
 TERMUX_PKG_MAINTAINER="Simeon Huang <symeon@librehat.com>"
 TERMUX_PKG_VERSION=5.15.10
-TERMUX_PKG_SRCURL="https://download.qt.io/official_releases/qt/5.15/${TERMUX_PKG_VERSION}/submodules/qtsvg-everywhere-opensource-src-${TERMUX_PKG_VERSION}.tar.xz"
-TERMUX_PKG_SHA256=cf13e3835b8a767779d041e556b0942c2d5aeb3b5a5d325ae5d2028c37004ae8
-TERMUX_PKG_DEPENDS="libc++, qt5-qtbase-opengl"
+TERMUX_PKG_SRCURL="https://download.qt.io/official_releases/qt/5.15/${TERMUX_PKG_VERSION}/submodules/qtx11extras-everywhere-opensource-src-${TERMUX_PKG_VERSION}.tar.xz"
+TERMUX_PKG_SHA256=d7dcd19dbfdcb0a843ea29dacb6af0892742814d39b7f758ba48743b384d88f4
+TERMUX_PKG_DEPENDS="qt5-qtbase-opengl"
 TERMUX_PKG_BUILD_DEPENDS="qt5-qtbase-opengl-cross-tools"
 TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_NO_STATICSPLIT=true
-TERMUX_PKG_CONFLICTS="qt5-qtsvg"
-TERMUX_PKG_REPLACES="qt5-qtsvg"
-TERMUX_PKG_PROVIDES="qt5-qtsvg"
+TERMUX_PKG_CONFLICTS="qt5-qtx11extras"
+TERMUX_PKG_REPLACES="qt5-qtx11extras"
+TERMUX_PKG_PROVIDES="qt5-qtx11extras"
+
+# Replacing the old qt5-base packages
+# TERMUX_PKG_REPLACES="qt5-x11extras"
 
 termux_step_configure () {
     "${TERMUX_PREFIX}/opt/qt/cross/bin/qmake" \
@@ -28,7 +31,7 @@ termux_step_make_install() {
     #######################################################
 
     ## Drop QMAKE_PRL_BUILD_DIR because reference the build dir.
-    find "${TERMUX_PREFIX}/lib" -type f -name "libQt5Svg*.prl" \
+    find "${TERMUX_PREFIX}/lib" -type f -name "libQt5X11*.prl" \
         -exec sed -i -e '/^QMAKE_PRL_BUILD_DIR/d' "{}" \;
 
     ## Remove *.la files.

@@ -1,26 +1,21 @@
 TERMUX_PKG_HOMEPAGE=https://www.qt.io/
-TERMUX_PKG_DESCRIPTION="Qt SVG Library"
+TERMUX_PKG_DESCRIPTION="Qt 5 WebSockets Library"
 TERMUX_PKG_LICENSE="LGPL-3.0"
 TERMUX_PKG_MAINTAINER="Simeon Huang <symeon@librehat.com>"
 TERMUX_PKG_VERSION=5.15.10
-TERMUX_PKG_SRCURL="https://download.qt.io/official_releases/qt/5.15/${TERMUX_PKG_VERSION}/submodules/qtsvg-everywhere-opensource-src-${TERMUX_PKG_VERSION}.tar.xz"
-TERMUX_PKG_SHA256=cf13e3835b8a767779d041e556b0942c2d5aeb3b5a5d325ae5d2028c37004ae8
-TERMUX_PKG_DEPENDS="libc++, qt5-qtbase-opengl"
+TERMUX_PKG_SRCURL="https://download.qt.io/official_releases/qt/${TERMUX_PKG_VERSION%.*}/${TERMUX_PKG_VERSION}/submodules/qtwebsockets-everywhere-opensource-src-${TERMUX_PKG_VERSION}.tar.xz"
+TERMUX_PKG_SHA256=2b9562db9e5c4b4585ab017f9b46b59ddc75b4d7222c5b03ebbc479652f6d98a
+TERMUX_PKG_DEPENDS="libc++, qt5-qtbase-opengl, qt5-qtdeclarative-opengl"
 TERMUX_PKG_BUILD_DEPENDS="qt5-qtbase-opengl-cross-tools"
 TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_NO_STATICSPLIT=true
-TERMUX_PKG_CONFLICTS="qt5-qtsvg"
-TERMUX_PKG_REPLACES="qt5-qtsvg"
-TERMUX_PKG_PROVIDES="qt5-qtsvg"
 
 termux_step_configure () {
     "${TERMUX_PREFIX}/opt/qt/cross/bin/qmake" \
         -spec "${TERMUX_PREFIX}/lib/qt/mkspecs/termux-cross"
 }
 
-termux_step_make_install() {
-    make install
-
+termux_step_post_make_install() {
     #######################################################
     ##
     ##  Fixes & cleanup.
@@ -28,8 +23,7 @@ termux_step_make_install() {
     #######################################################
 
     ## Drop QMAKE_PRL_BUILD_DIR because reference the build dir.
-    find "${TERMUX_PREFIX}/lib" -type f -name "libQt5Svg*.prl" \
-        -exec sed -i -e '/^QMAKE_PRL_BUILD_DIR/d' "{}" \;
+    sed -i -e '/^QMAKE_PRL_BUILD_DIR/d' "${TERMUX_PREFIX}/lib/libQt5WebSockets.prl"
 
     ## Remove *.la files.
     find "${TERMUX_PREFIX}/lib" -iname \*.la -delete

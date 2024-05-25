@@ -1,26 +1,24 @@
 TERMUX_PKG_HOMEPAGE=https://www.qt.io/
-TERMUX_PKG_DESCRIPTION="Qt SVG Library"
+TERMUX_PKG_DESCRIPTION="Qt Quick Controls2 module"
 TERMUX_PKG_LICENSE="LGPL-3.0"
 TERMUX_PKG_MAINTAINER="Simeon Huang <symeon@librehat.com>"
 TERMUX_PKG_VERSION=5.15.10
-TERMUX_PKG_SRCURL="https://download.qt.io/official_releases/qt/5.15/${TERMUX_PKG_VERSION}/submodules/qtsvg-everywhere-opensource-src-${TERMUX_PKG_VERSION}.tar.xz"
-TERMUX_PKG_SHA256=cf13e3835b8a767779d041e556b0942c2d5aeb3b5a5d325ae5d2028c37004ae8
-TERMUX_PKG_DEPENDS="libc++, qt5-qtbase-opengl"
+TERMUX_PKG_SRCURL="https://download.qt.io/official_releases/qt/5.15/${TERMUX_PKG_VERSION}/submodules/qtquickcontrols2-everywhere-opensource-src-${TERMUX_PKG_VERSION}.tar.xz"
+TERMUX_PKG_SHA256=97954c92fee9031ec31341812ccf53afb3c132e2b271bcef1174367fa002fc8e
+TERMUX_PKG_DEPENDS="libc++, qt5-qtbase-opengl, qt5-qtdeclarative-opengl"
 TERMUX_PKG_BUILD_DEPENDS="qt5-qtbase-opengl-cross-tools"
 TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_NO_STATICSPLIT=true
-TERMUX_PKG_CONFLICTS="qt5-qtsvg"
-TERMUX_PKG_REPLACES="qt5-qtsvg"
-TERMUX_PKG_PROVIDES="qt5-qtsvg"
+TERMUX_PKG_CONFLICTS="qt5-qtquickcontrols2"
+TERMUX_PKG_REPLACES="qt5-qtquickcontrols2"
+TERMUX_PKG_PROVIDES="qt5-qtquickcontrols2"
 
 termux_step_configure () {
     "${TERMUX_PREFIX}/opt/qt/cross/bin/qmake" \
         -spec "${TERMUX_PREFIX}/lib/qt/mkspecs/termux-cross"
 }
 
-termux_step_make_install() {
-    make install
-
+termux_step_post_make_install() {
     #######################################################
     ##
     ##  Fixes & cleanup.
@@ -28,7 +26,9 @@ termux_step_make_install() {
     #######################################################
 
     ## Drop QMAKE_PRL_BUILD_DIR because reference the build dir.
-    find "${TERMUX_PREFIX}/lib" -type f -name "libQt5Svg*.prl" \
+    find "${TERMUX_PREFIX}/lib" -type f -name "libQt5QuickControls2*.prl" \
+        -exec sed -i -e '/^QMAKE_PRL_BUILD_DIR/d' "{}" \;
+    find "${TERMUX_PREFIX}/lib" -type f -name "libQt5QuickTemplates2*.prl" \
         -exec sed -i -e '/^QMAKE_PRL_BUILD_DIR/d' "{}" \;
 
     ## Remove *.la files.

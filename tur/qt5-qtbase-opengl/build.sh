@@ -7,9 +7,8 @@ TERMUX_PKG_REVISION=4
 TERMUX_PKG_SRCURL="https://download.qt.io/official_releases/qt/5.15/${TERMUX_PKG_VERSION}/submodules/qtbase-everywhere-opensource-src-${TERMUX_PKG_VERSION}.tar.xz"
 TERMUX_PKG_SHA256=c0d06cb18d20f10bf7ad53552099e097ec39362d30a5d6f104724f55fa1c8fb9
 TERMUX_PKG_DEPENDS="dbus, double-conversion, freetype, glib, harfbuzz, krb5, libandroid-execinfo, libandroid-shmem, libandroid-posix-semaphore, libc++, libice, libicu, libjpeg-turbo, libpng, libsm, libuuid, libx11, libxcb, libxi, libxkbcommon, mesa, openssl, pcre2, postgresql, ttf-dejavu, vulkan-loader, xcb-util-image, xcb-util-keysyms, xcb-util-renderutil, xcb-util-wm, zlib"
-TERMUX_PKG_BUILD_DEPENDS="vulkan-headers"
 # gtk3 dependency is a run-time dependency only for the gtk platformtheme subpackage
-TERMUX_PKG_BUILD_DEPENDS="gtk3"
+TERMUX_PKG_BUILD_DEPENDS="gtk3, vulkan-headers"
 TERMUX_PKG_CONFLICTS="qt5-qtbase"
 TERMUX_PKG_REPLACES="qt5-qtbase"
 TERMUX_PKG_PROVIDES="qt5-qtbase"
@@ -28,6 +27,8 @@ bin/syncqt.pl
 TERMUX_PKG_BREAKS="qt5-x11extras, qt5-tools, qt5-declarative"
 
 termux_step_pre_configure () {
+    # echo "$TERMUX_PKG_VERSION-$TERMUX_PKG_REVISION" > "$TERMUX_BUILT_PACKAGES_DIRECTORY/qt5-qtbase"
+
     if [ "${TERMUX_ARCH}" = "arm" ]; then
         ## -mfpu=neon causes build failure on ARM.
         CFLAGS="${CFLAGS/-mfpu=neon/} -mfpu=vfp"
