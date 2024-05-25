@@ -4,6 +4,7 @@ TERMUX_PKG_MAINTAINER="@termux-user-repository"
 TERMUX_PKG_LICENSE="GPL-2.0, LGPL-2.0"
 TERMUX_PKG_DEPENDS="libdb, libandroid-sysv-semaphore, libandroid-shmem"
 TERMUX_PKG_VERSION=0.126.0
+TERMUX_PKG_GIT_BRANCH=$TERMUX_PKG_VERSION
 TERMUX_PKG_SRCURL=git+https://github.com/jackaudio/jack1
 TERMUX_PKG_AUTO_UPDATE=true
 
