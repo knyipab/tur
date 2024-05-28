@@ -24,7 +24,8 @@ termux_step_host_build() {
 		-S ${TERMUX_PKG_SRCDIR} \
 		-DCMAKE_BUILD_TYPE=MinSizeRel \
 		-DCMAKE_INSTALL_PREFIX=${TERMUX_PREFIX}/opt/qt6/cross \
-		-DCMAKE_MESSAGE_LOG_LEVEL=STATUS
+		-DCMAKE_MESSAGE_LOG_LEVEL=STATUS \
+		-DQT_FEATURE_zstd=OFF
 	ninja \
 		-j ${TERMUX_MAKE_PROCESSES} \
 		install
