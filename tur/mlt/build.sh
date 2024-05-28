@@ -10,3 +10,5 @@ TERMUX_PKG_SUGGESTS="ffmpeg, fftw, libexif, libsoxr, sox, rubberband, libsampler
 # TODO: jack2, movit
 TERMUX_PKG_AUTO_UPDATE=true
 TERMUX_PKG_FORCE_CMAKE=true
+
+## patch on src/modules/frei0r/factory.c
