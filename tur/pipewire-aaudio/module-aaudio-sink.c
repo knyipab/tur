@@ -28,14 +28,16 @@
 #include <pipewire/impl.h>
 #include <pipewire/i18n.h>
 
-/** \page page_module_example_sink Example Sink
- *
- * The example sink is a good starting point for writing a custom
- * sink. We refer to the source code for more information.
+#include <android/versioning.h>
+#undef __INTRODUCED_IN
+#define __INTRODUCED_IN(api_level)
+#include <aaudio/AAudio.h>
+
+/** \page page_module_aaudio_sink AAudio Sink
  *
  * ## Module Name
  *
- * `libpipewire-module-example-sink`
+ * `libpipewire-module-aaudio-sink`
  *
  * ## Module Options
  *
@@ -60,14 +62,14 @@
  * - \ref PW_KEY_NODE_VIRTUAL
  * - \ref PW_KEY_MEDIA_CLASS
  *
- * ## Example configuration
+ * ## Configuration
  *
  *\code{.unparsed}
  * context.modules = [
- * {   name = libpipewire-module-example-sink
+ * {   name = libpipewire-module-aaudio-sink
  *     args = {
- *         node.name = "example_sink"
- *         node.description = "My Example Sink"
+ *         node.name = "aaudio_sink"
+ *         node.description = "My AAudio Sink"
  *         stream.props = {
  *             audio.position = [ FL FR ]
  *         }
@@ -77,12 +79,12 @@
  *\endcode
  */
 
-#define NAME "example-sink"
+#define NAME "aaudio-sink"
 
 PW_LOG_TOPIC_STATIC(mod_topic, "mod." NAME);
 #define PW_LOG_TOPIC_DEFAULT mod_topic
 
-#define DEFAULT_FORMAT "S16"
+#define DEFAULT_FORMAT "S16LE"
 #define DEFAULT_RATE 48000
 #define DEFAULT_CHANNELS 2
 #define DEFAULT_POSITION "[ FL FR ]"
@@ -98,8 +100,8 @@ PW_LOG_TOPIC_STATIC(mod_topic, "mod." NAME);
 
 
 static const struct spa_dict_item module_props[] = {
-	{ PW_KEY_MODULE_AUTHOR, "Wim Taymans <wim.taymans@gmail.com>" },
-	{ PW_KEY_MODULE_DESCRIPTION, "An example audio sink" },
+	{ PW_KEY_MODULE_AUTHOR, "Ronald Yip" },
+	{ PW_KEY_MODULE_DESCRIPTION, "AAudio (Andoird) audio sink" },
 	{ PW_KEY_MODULE_USAGE, MODULE_USAGE },
 	{ PW_KEY_MODULE_VERSION, PACKAGE_VERSION },
 };
@@ -124,6 +126,9 @@ struct impl {
 	uint32_t frame_size;
 
 	unsigned int do_disconnect:1;
+
+    AAudioStreamBuilder *aaudio_builder;
+    AAudioStream *aaudio_stream;
 };
 
 static void stream_destroy(void *d)
@@ -140,6 +145,8 @@ static void stream_state_changed(void *d, enum pw_stream_state old,
 	switch (state) {
 	case PW_STREAM_STATE_ERROR:
 	case PW_STREAM_STATE_UNCONNECTED:
+		pw_log_debug("destroy triggered by stream state changed, pw_stream_state = %d", state);
+        AAudioStream_close(impl->aaudio_stream);
 		pw_impl_module_schedule_destroy(impl->module);
 		break;
 	case PW_STREAM_STATE_PAUSED:
@@ -156,21 +163,27 @@ static void playback_stream_process(void *d)
 	struct pw_buffer *buf;
 	struct spa_data *bd;
 	void *data;
-	uint32_t offs, size;
+	uint32_t offs, size, i;
+    aaudio_result_t returnCode;
 
 	if ((buf = pw_stream_dequeue_buffer(impl->stream)) == NULL) {
 		pw_log_debug("out of buffers: %m");
 		return;
 	}
 
-	bd = &buf->buffer->datas[0];
+	for (i = 0; i < buf->buffer->n_datas; i++) {
+		bd = &buf->buffer->datas[i];
 
-	offs = SPA_MIN(bd->chunk->offset, bd->maxsize);
-	size = SPA_MIN(bd->chunk->size, bd->maxsize - offs);
-	data = SPA_PTROFF(bd->data, offs, void);
+		offs = SPA_MIN(bd->chunk->offset, bd->maxsize);
+		size = SPA_MIN(bd->maxsize - offs, bd->chunk->size);
 
-	/* write buffer contents here */
-	pw_log_info("got buffer of size %d and data %p", size, data);
+        spa_zero(data);
+	    data = SPA_PTROFF(bd->data, offs, void);
+        
+        if (returnCode = AAudioStream_write(impl->aaudio_stream, data, size / impl->frame_size, 0) < 0)
+            pw_log_error("AAudioStream_write error: %s", AAudio_convertResultToText(returnCode));
+	}
+	pw_log_info("got buffer of size %d (= %d frames) and data %p", size, size / impl->frame_size, data);
 
 	pw_stream_queue_buffer(impl->stream, buf);
 }
@@ -182,6 +195,60 @@ static const struct pw_stream_events playback_stream_events = {
 	.process = playback_stream_process
 };
 
+
+static void core_destroy(void *d);
+
+static void error_callback(AAudioStream *stream, void *impl, aaudio_result_t error) {
+    pw_log_debug("AAudio error: %d", error);
+    core_destroy(impl);
+}
+
+#define CHK(stmt) { \
+    aaudio_result_t res = stmt; \
+    if (res != AAUDIO_OK) { \
+        fprintf(stderr, "AAudio error %s at %s:%d\n", AAudio_convertResultToText(res), __FILE__, __LINE__); \
+        goto fail; \
+    } \
+}
+
+static int open_aaudio_stream(struct impl *impl)
+{
+    // bool want_float;
+    aaudio_format_t format;
+
+    CHK(AAudio_createStreamBuilder(&impl->aaudio_builder));
+
+    AAudioStreamBuilder_setDirection(impl->aaudio_builder, AAUDIO_DIRECTION_OUTPUT);
+    
+    // TODO: buffer
+    AAudioStreamBuilder_setPerformanceMode(impl->aaudio_builder, AAUDIO_PERFORMANCE_MODE_NONE);// + impl->pm);
+    AAudioStreamBuilder_setErrorCallback(impl->aaudio_builder, error_callback, impl);
+
+    switch (impl->info.format) {
+        case SPA_AUDIO_FORMAT_S16_LE: format = AAUDIO_FORMAT_PCM_I16; break;
+        case SPA_AUDIO_FORMAT_S24_LE: format = AAUDIO_FORMAT_PCM_I24_PACKED; break;
+        case SPA_AUDIO_FORMAT_S32_LE: format = AAUDIO_FORMAT_PCM_I32; break;
+        case SPA_AUDIO_FORMAT_F32_LE: format = AAUDIO_FORMAT_PCM_FLOAT; break;
+        default: 
+            pw_log_error( "audio format not supported. ");
+            goto fail;
+    }
+    AAudioStreamBuilder_setFormat(impl->aaudio_builder, format);
+    AAudioStreamBuilder_setSampleRate(impl->aaudio_builder, impl->info.rate);
+    AAudioStreamBuilder_setChannelCount(impl->aaudio_builder, impl->info.channels);
+
+    CHK(AAudioStreamBuilder_openStream(impl->aaudio_builder, &impl->aaudio_stream));
+    CHK(AAudioStreamBuilder_delete(impl->aaudio_builder));
+
+    impl->info.rate = AAudioStream_getSampleRate(impl->aaudio_stream);
+
+    return 0;
+
+fail:
+    return -1;
+}
+
+
 static int create_stream(struct impl *impl)
 {
 	int res;
@@ -190,7 +257,8 @@ static int create_stream(struct impl *impl)
 	uint8_t buffer[1024];
 	struct spa_pod_builder b;
 
-	impl->stream = pw_stream_new(impl->core, "example sink", impl->stream_props);
+    open_aaudio_stream(impl);
+	impl->stream = pw_stream_new(impl->core, "aaudio sink", impl->stream_props);
 	impl->stream_props = NULL;
 
 	if (impl->stream == NULL)
@@ -225,6 +293,7 @@ static void core_error(void *data, uint32_t id, int seq, int res, const char *me
 			id, seq, res, spa_strerror(res), message);
 
 	if (id == PW_ID_CORE && res == -EPIPE)
+        AAudioStream_close(impl->aaudio_stream);
 		pw_impl_module_schedule_destroy(impl->module);
 }
 
@@ -236,6 +305,7 @@ static const struct pw_core_events core_events = {
 static void core_destroy(void *d)
 {
 	struct impl *impl = d;
+    AAudioStream_close(impl->aaudio_stream);
 	spa_hook_remove(&impl->core_listener);
 	impl->core = NULL;
 	pw_impl_module_schedule_destroy(impl->module);
@@ -313,6 +383,7 @@ static void parse_audio_info(const struct pw_properties *props, struct spa_audio
 	spa_zero(*info);
 	if ((str = pw_properties_get(props, PW_KEY_AUDIO_FORMAT)) == NULL)
 		str = DEFAULT_FORMAT;
+    // TODO: enforce Android compatible format
 	info->format = format_from_name(str, strlen(str));
 
 	info->rate = pw_properties_get_uint32(props, PW_KEY_AUDIO_RATE, info->rate);
@@ -417,7 +488,7 @@ int pipewire__module_init(struct pw_impl_module *module, const char *args)
 		pw_properties_set(props, PW_KEY_MEDIA_CLASS, "Audio/Sink");
 
 	if (pw_properties_get(props, PW_KEY_NODE_NAME) == NULL)
-		pw_properties_setf(props, PW_KEY_NODE_NAME, "example-sink-%u-%u", pid, id);
+		pw_properties_setf(props, PW_KEY_NODE_NAME, "aaudio-sink-%u-%u", pid, id);
 	if (pw_properties_get(props, PW_KEY_NODE_DESCRIPTION) == NULL)
 		pw_properties_set(props, PW_KEY_NODE_DESCRIPTION,
 				pw_properties_get(props, PW_KEY_NODE_NAME));

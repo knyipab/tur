@@ -4,6 +4,7 @@ TERMUX_PKG_LICENSE="MIT, LGPL-2.1, LGPL-3.0, GPL-2.0"
 TERMUX_PKG_LICENSE_FILE="COPYING, LICENSE"
 TERMUX_PKG_MAINTAINER="@termux"
 TERMUX_PKG_VERSION="1.0.3"
+TERMUX_PKG_REVISION=3
 TERMUX_PKG_SRCURL="https://gitlab.freedesktop.org/pipewire/pipewire/-/archive/${TERMUX_PKG_VERSION}/pipewire-${TERMUX_PKG_VERSION}.tar.bz2"
 TERMUX_PKG_SHA256=344d861efe19e9b8cd2389811fe2bdfb4f70ba640e271d92950d0899c0326181
 TERMUX_PKG_AUTO_UPDATE=true
@@ -31,6 +32,18 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 "
 
 termux_step_pre_configure() {
+	# Our aaudio modules need libaaudio.so from a later android api version:
+	if [ $TERMUX_PKG_API_LEVEL -lt 26 ]; then
+		local _libdir="$TERMUX_PKG_TMPDIR/libaaudio"
+		rm -rf "${_libdir}"
+		mkdir -p "${_libdir}"
+		cp "$TERMUX_STANDALONE_TOOLCHAIN/sysroot/usr/lib/$TERMUX_HOST_PLATFORM/26/libaaudio.so" \
+			"${_libdir}"
+		LDFLAGS+=" -L${_libdir}"
+	fi
+	cp $TERMUX_PKG_BUILDER_DIR/module-aaudio-source.c $TERMUX_PKG_SRCDIR/src/modules/
+	cp $TERMUX_PKG_BUILDER_DIR/module-aaudio-sink.c $TERMUX_PKG_SRCDIR/src/modules/
+	
 	local _WRAPPER_BIN="${TERMUX_PKG_BUILDDIR}/_wrapper/bin"
 	mkdir -p "${_WRAPPER_BIN}"
 	if [[ "${TERMUX_ON_DEVICE_BUILD}" == "false" ]]; then

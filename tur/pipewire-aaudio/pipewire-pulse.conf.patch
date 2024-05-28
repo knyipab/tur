@@ -1,0 +1,22 @@
+diff --git a/src/daemon/pipewire-pulse.conf.in b/src/daemon/pipewire-pulse.conf.in
+index 6f7feb9..cda0d2c 100644
+--- a/src/daemon/pipewire-pulse.conf.in
++++ b/src/daemon/pipewire-pulse.conf.in
+@@ -47,6 +47,7 @@ context.modules = [
+ 	    # to have config per server.
+         }
+     }
++    { name = libpipewire-module-aaudio-sink }
+ ]
+ 
+ # Extra scripts can be started here. Setup in default.pa can be moved in
+@@ -86,7 +87,8 @@ stream.properties = {
+ pulse.properties = {
+     # the addresses this server listens on
+     server.address = [
+-        "unix:native"
++        #"unix:nativep
++        "unix:/data/data/com.termux/files/usr/tmp/pipewire-pulse.unix"
+         #"unix:/tmp/something"              # absolute paths may be used
+         #"tcp:4713"                         # IPv4 and IPv6 on all addresses
+         #"tcp:[::]:9999"                    # IPv6 on all addresses

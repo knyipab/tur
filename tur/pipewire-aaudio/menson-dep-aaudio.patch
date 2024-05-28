@@ -1,0 +1,64 @@
+diff --git a/meson.build b/meson.build
+index fa5b1e6..eb2c2fd 100644
+--- a/meson.build
++++ b/meson.build
+@@ -393,6 +393,11 @@ else
+   summary({'WebRTC Echo Canceling < 1.0': webrtc_dep.found()}, bool_yn: true, section: 'Misc dependencies')
+ endif
+ 
++# On Android, AAudio is required
++libaaudio_dep = (host_machine.system() == 'android'
++    ? cc.find_library('aaudio', required : true)
++    : dependency('', required: false))
++
+ # On FreeBSD and MidnightBSD, epoll-shim library is required for eventfd() and timerfd()
+ epoll_shim_dep = (host_machine.system() == 'freebsd' or host_machine.system() == 'midnightbsd'
+     ? dependency('epoll-shim', required: true)
+diff --git a/src/modules/meson.build b/src/modules/meson.build
+index e89010c..b231d9e 100644
+--- a/src/modules/meson.build
++++ b/src/modules/meson.build
+@@ -4,6 +4,8 @@ subdir('spa')
+ # The list of "main" source files for modules, the ones that have the
+ # doxygen documentation
+ module_sources = [
++  'module-aaudio-source.c',
++  'module-aaudio-sink.c',
+   'module-access.c',
+   'module-adapter.c',
+   'module-avb.c',
+@@ -47,6 +49,26 @@ module_sources = [
+   'module-x11-bell.c',
+ ]
+ 
++if libaaudio_dep.found()
++  pipewire_module_aaudio_sink = shared_library('pipewire-module-aaudio-sink',
++    [ 'module-aaudio-sink.c' ],
++    include_directories : [configinc],
++    install : true,
++    install_dir : modules_install_dir,
++    install_rpath: modules_install_dir,
++    dependencies : [spa_dep, mathlib, dl_lib, pipewire_dep, libaaudio_dep],
++  )
++
++  pipewire_module_aaudio_sink = shared_library('pipewire-module-aaudio-source',
++    [ 'module-aaudio-source.c' ],
++    include_directories : [configinc],
++    install : true,
++    install_dir : modules_install_dir,
++    install_rpath: modules_install_dir,
++    dependencies : [spa_dep, mathlib, dl_lib, pipewire_dep, libaaudio_dep],
++  )
++endif
++
+ pipewire_module_access_deps = [spa_dep, mathlib, dl_lib, pipewire_dep]
+ if flatpak_support
+   pipewire_module_access_deps += glib2_dep
+@@ -362,6 +384,7 @@ pipewire_module_protocol_pulse_sources = [
+   'module-protocol-pulse/stream.c',
+   'module-protocol-pulse/utils.c',
+   'module-protocol-pulse/volume.c',
++  'module-protocol-pulse/modules/module-aaudio-sink.c',
+   'module-protocol-pulse/modules/module-alsa-sink.c',
+   'module-protocol-pulse/modules/module-alsa-source.c',
+   'module-protocol-pulse/modules/module-always-sink.c',
