@@ -1,0 +1,9 @@
+TERMUX_PKG_HOMEPAGE=https://www.music.mcgill.ca/~gary/rtaudio/
+TERMUX_PKG_DESCRIPTION="A set of C++ classes that provide a common API for realtime audio input/output."
+TERMUX_PKG_MAINTAINER="@termux"
+TERMUX_PKG_LICENSE="custom"
+TERMUX_PKG_VERSION=6.0.1
+TERMUX_PKG_SRCURL=https://github.com/thestk/rtaudio/archive/$TERMUX_PKG_VERSION/rtaudio-$TERMUX_PKG_VERSION.tar.gz
+TERMUX_PKG_SHA256=7206c8b6cee43b474f43d64988fefaadfdcfc4264ed38d8de5f5d0e6ddb0a123
+TERMUX_PKG_DEPENDS="pulesaudio"
+TERMUX_PKG_AUTO_UPDATE=true
