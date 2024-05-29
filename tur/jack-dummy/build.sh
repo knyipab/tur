@@ -1,5 +1,5 @@
 TERMUX_PKG_HOMEPAGE=https://jackaudio.org/
-TERMUX_PKG_DESCRIPTION="jack1 codebase"
+TERMUX_PKG_DESCRIPTION="jack1 (dummy module only)"
 TERMUX_PKG_MAINTAINER="@termux-user-repository"
 TERMUX_PKG_LICENSE="GPL-2.0, LGPL-2.0"
 TERMUX_PKG_DEPENDS="libdb, libandroid-sysv-semaphore, libandroid-shmem"
