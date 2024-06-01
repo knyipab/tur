@@ -15,6 +15,7 @@ TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --without-java
 --disable-nss
+--without-webdav
 --disable-curl
 --disable-libcmis
 --without-system-clucene
