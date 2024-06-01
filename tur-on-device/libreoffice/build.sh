@@ -15,6 +15,7 @@ TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --without-java
 --disable-nss
+--disable-cmis
 --enable-dbus
 --enable-gtk3
 --enable-gtk4
