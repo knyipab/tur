@@ -13,6 +13,7 @@ TERMUX_PKG_DEPENDS="which, bison, hunspell, python, pango, libjpeg-turbo, libxra
 TERMUX_PKG_BUILD_DEPENDS="gtk4, gtk3, qt5-qtbase, qt5-qmake, qt5-qtx11extras, postgresql, unixodbc, mariadb"
 TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
+--disable-online-update
 --without-java
 --disable-nss
 --without-webdav
