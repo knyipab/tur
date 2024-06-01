@@ -9,11 +9,18 @@ TERMUX_PKG_SHA256=f6e2059cd85d07793e8d95828b2412906bdba8bf61a5f76b8c51907898481e
 # TODO: matches Archlinux deps:
 # TERMUX_PKG_DEPENDS="curl, hunspell, python, libwpd, libwps, neon, pango, nspr, libjpeg, libxrandr, libgl, redland, hyphen, lpsolve, gcc-libs, sh, graphite, icu, libxslt, lcms2, poppler, libvisio, libetonyek, libodfgen, libcdr, libmspub, harfbuzz-icu, nss, clucene, hicolor-icon-theme, desktop-file-utils, shared-mime-info, libpagemaker, libxinerama, libabw, libmwaw, libe-book, libcups, liblangtag, libexttextcat, liborcus, libwebp, libcmis, libtommath, libzmf, libatomic_ops, xmlsec, libnumbertext, gpgme, libfreehand, libstaroffice, libepubgen, libqxp, libepoxy, box2d, zxing-cpp, xdg-utils, libldap, fontconfig, zlib, libpng, freetype2, raptor, libxml2, cairo, libx11, expat, glib2, boost-libs, libtiff, dbus, glibc, librevenge, libxext, openjpeg2"
 # TODO: to be added
-TERMUX_PKG_DEPENDS="cups, python, which, bison"
+TERMUX_PKG_DEPENDS="which, bison, hunspell, python, pango, libjpeg-turbo, libxrandr, libhyphen, libgraphite, libicu, libxslt, poppler, harfbuzz-icu, hicolor-icon-theme, desktop-file-utils, shared-mime-info, libxinerama, cups, libwebp, libtommath, libatomic-ops, xmlsec, gpgme, libepoxy, libzxing-cpp, xdg-utils, fontconfig, zlib, libpng, freetype, libraptor2, libxml2, libcairo, libx11, boost, libtiff, libxext, openjpeg"
+TERMUX_PKG_BUILD_DEPENDS="gtk4, gtk3, qt5-qtbase, qt6-qtbase"
 TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --without-java
 --disable-nss
+--enable-dbus
+--enable-gtk3
+--enable-gtk4
+--enable-qt5
+--enable-qt6
+--enable-python=system
 "
 
 termux_step_pre_configure() {
