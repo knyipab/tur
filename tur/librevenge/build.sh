@@ -1,0 +1,10 @@
+TERMUX_PKG_HOMEPAGE=https://sf.net/p/libwpd/librevenge/
+TERMUX_PKG_DESCRIPTION="library for REVerses ENGineered formats filters"
+TERMUX_PKG_LICENSE="MPL"
+TERMUX_PKG_MAINTAINER="@termux"
+TERMUX_PKG_VERSION="0.0.5"
+TERMUX_PKG_SRCURL=https://sourceforge.net/projects/libwpd/files/librevenge/librevenge-${TERMUX_PKG_VERSION}/librevenge-${TERMUX_PKG_VERSION}.tar.xz
+TERMUX_PKG_SHA256=106d0c44bb6408b1348b9e0465666fa83b816177665a22cd017e886c1aaeeb34
+TERMUX_PKG_DEPENDS="zlib"
+TERMUX_PKG_BUILD_DEPENDS="boost, cppunit, doxygen"
+TERMUX_PKG_AUTO_UPDATE=true
