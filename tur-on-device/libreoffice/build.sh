@@ -56,6 +56,7 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --without-system-libexttextcat
 --without-system-mythes
 --without-system-libnumbertext
+--disable-gstreamer-1-0
 
 --disable-lpsolve
 --disable-coinmp
