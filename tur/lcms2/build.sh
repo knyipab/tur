@@ -1,0 +1,9 @@
+TERMUX_PKG_HOMEPAGE=http://www.littlecms.com/
+TERMUX_PKG_DESCRIPTION="Small-footprint color management engine, version 2"
+TERMUX_PKG_LICENSE="MIT"
+TERMUX_PKG_MAINTAINER="@termux"
+TERMUX_PKG_VERSION="2.16"
+TERMUX_PKG_SRCURL=https://github.com/mm2/Little-CMS/releases/download/lcms${$TERMUX_PKG_VERSION}/lcms2-${$TERMUX_PKG_VERSION}.tar.gz
+TERMUX_PKG_SHA256=d873d34ad8b9b4cea010631f1a6228d2087475e4dc5e763eb81acc23d9d45a51
+TERMUX_PKG_DEPENDS="libtiff"
+TERMUX_PKG_AUTO_UPDATE=true
