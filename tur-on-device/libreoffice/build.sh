@@ -53,6 +53,7 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --without-system-box2d
 --without-system-zxcvbn
 --without-system-libexttextcat
+--without-system-mythes
 --without-system-libnumbertext
 
 --disable-lpsolve
