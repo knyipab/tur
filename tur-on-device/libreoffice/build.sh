@@ -41,10 +41,11 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 
 --without-system-cppunit
 
---without-system-mdds
 --without-system-libtommath
---without-system-libfixmath
+--without-system-mdds
+--without-system-dragonbox
 --without-system-frozen
+--without-system-libfixmath
 --without-system-hsqldb
 --without-system-sane
 --without-system-orcus
