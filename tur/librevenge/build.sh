@@ -9,24 +9,24 @@ TERMUX_PKG_DEPENDS="zlib"
 TERMUX_PKG_BUILD_DEPENDS="boost, cppunit, doxygen"
 
 termux_step_pre_configure() {
- 	## fix other archs hidden bugs
- 	## aarch64
- 	# SKIP: ./lib/librevenge-0.0.a
- 	# ERROR: ./lib/librevenge-0.0.so contains undefined symbols:
- 	#      5: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT   UND __aarch64_ldadd8_relax
- 	#     27: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT   UND __aarch64_ldadd8_acq_rel
- 	#     46: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT   UND __aarch64_ldadd4_acq_rel
- 	# SKIP: ./lib/librevenge-generators-0.0.a
- 	# ERROR: ./lib/librevenge-generators-0.0.so contains undefined symbols:
- 	#    127: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT   UND __aarch64_ldadd8_acq_rel
- 	# SKIP: ./lib/librevenge-stream-0.0.a
- 	## i686
- 	# SKIP: ./lib/librevenge-0.0.a
- 	# ERROR: ./lib/librevenge-0.0.so contains undefined symbols:
- 	#     44: 00000000     0 NOTYPE  GLOBAL DEFAULT   UND __umoddi3
- 	# SKIP: ./lib/librevenge-generators-0.0.a
- 	# SKIP: ./lib/librevenge-stream-0.0.a
- 	# ERROR: Refer above
- 	LDFLAGS+=" $($CC -print-libgcc-file-name)" 
- 	autoreconf -fi 
+	## fix other archs hidden bugs
+	## aarch64
+	# SKIP: ./lib/librevenge-0.0.a
+	# ERROR: ./lib/librevenge-0.0.so contains undefined symbols:
+	#      5: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT   UND __aarch64_ldadd8_relax
+	#     27: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT   UND __aarch64_ldadd8_acq_rel
+	#     46: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT   UND __aarch64_ldadd4_acq_rel
+	# SKIP: ./lib/librevenge-generators-0.0.a
+	# ERROR: ./lib/librevenge-generators-0.0.so contains undefined symbols:
+	#    127: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT   UND __aarch64_ldadd8_acq_rel
+	# SKIP: ./lib/librevenge-stream-0.0.a
+	## i686
+	# SKIP: ./lib/librevenge-0.0.a
+	# ERROR: ./lib/librevenge-0.0.so contains undefined symbols:
+	#     44: 00000000     0 NOTYPE  GLOBAL DEFAULT   UND __umoddi3
+	# SKIP: ./lib/librevenge-generators-0.0.a
+	# SKIP: ./lib/librevenge-stream-0.0.a
+	# ERROR: Refer above
+	LDFLAGS+=" $($CC -print-libgcc-file-name)"
+	autoreconf -fi
 }

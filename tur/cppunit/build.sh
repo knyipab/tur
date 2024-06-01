@@ -14,6 +14,6 @@ termux_step_pre_configure() {
 	#     51: 00000000     0 NOTYPE  GLOBAL DEFAULT   UND __aeabi_uidiv
 	#     60: 00000000     0 NOTYPE  GLOBAL DEFAULT   UND __aeabi_idiv
 	# SKIP: ./lib/libcppunit.a
-	LDFLAGS+=" $($CC -print-libgcc-file-name)" 
-	autoreconf -fi 
+	LDFLAGS+=" $($CC -print-libgcc-file-name)"
+	autoreconf -fi
 }
