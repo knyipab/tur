@@ -1,4 +1,4 @@
-TERMUX_PKG_HOMEPAGE=http://www.box2d.org
+TERMUX_PKG_HOMEPAGE=http://www.box2d.org/
 TERMUX_PKG_DESCRIPTION="2D rigid body simulation library for games"
 TERMUX_PKG_LICENSE="MIT"
 TERMUX_PKG_MAINTAINER="@termux"
