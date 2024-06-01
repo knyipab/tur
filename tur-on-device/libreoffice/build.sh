@@ -18,6 +18,8 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --disable-curl
 --disable-libcmis
 --without-system-clucene
+--without-system-xmlsec
+
 --disable-lpsolve
 --disable-coinmp
 --disable-ldap
