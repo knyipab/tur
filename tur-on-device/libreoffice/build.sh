@@ -22,6 +22,21 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --without-system-librevenge
 --without-system-libodfgen
 --without-system-libepubgen
+--without-system-libvisio
+--without-system-libwpd
+--without-system-libwpg
+--without-system-libwps
+--without-system-libcdr
+--without-system-libmspub
+--without-system-libmwaw
+--without-system-libetonyek
+--without-system-libfreehand
+--without-system-libebook
+--without-system-libabw
+--without-system-libpagemaker
+--without-system-libqxp
+--without-system-libzmf
+--without-system-libstaroffice
 
 --disable-lpsolve
 --disable-coinmp
