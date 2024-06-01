@@ -17,7 +17,7 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --disable-nss
 --disable-curl
 --disable-libcmis
---disable-xmlhelp
+--without-help
 
 --disable-lpsolve
 --disable-coinmp
