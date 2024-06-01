@@ -1,6 +1,6 @@
 TERMUX_PKG_HOMEPAGE=https://sf.net/p/libwpd/librevenge/
 TERMUX_PKG_DESCRIPTION="library for REVerses ENGineered formats filters"
-TERMUX_PKG_LICENSE="MPL"
+TERMUX_PKG_LICENSE="MPL-2.0"
 TERMUX_PKG_MAINTAINER="@termux"
 TERMUX_PKG_VERSION="0.0.5"
 TERMUX_PKG_SRCURL=https://sourceforge.net/projects/libwpd/files/librevenge/librevenge-${TERMUX_PKG_VERSION}/librevenge-${TERMUX_PKG_VERSION}.tar.xz
