@@ -41,6 +41,8 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 
 --without-system-cppunit
 
+--without-system-mdds
+
 --disable-lpsolve
 --disable-coinmp
 --disable-ldap
