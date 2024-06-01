@@ -39,6 +39,8 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --without-system-libzmf
 --without-system-libstaroffice
 
+--without-system-cppunit
+
 --disable-lpsolve
 --disable-coinmp
 --disable-ldap
