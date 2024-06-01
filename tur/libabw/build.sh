@@ -7,4 +7,3 @@ TERMUX_PKG_SRCURL=https://dev-www.libreoffice.org/src/libabw/libabw-${TERMUX_PKG
 TERMUX_PKG_SHA256=e763a9dc21c3d2667402d66e202e3f8ef4db51b34b79ef41f56cacb86dcd6eed
 TERMUX_PKG_DEPENDS="librevenge, libxml2"
 TERMUX_PKG_BUILD_DEPENDS="boost, doxygen, gperf"
-TERMUX_PKG_AUTO_UPDATE=true
