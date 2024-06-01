@@ -20,11 +20,6 @@ TERMUX_PKG_BUILD_DEPENDS="boost, cppunit, doxygen"
     # ERROR: ./lib/librevenge-generators-0.0.so contains undefined symbols:
     #    127: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT   UND __aarch64_ldadd8_acq_rel
     # SKIP: ./lib/librevenge-stream-0.0.a
-    ## arm
-    # ERROR: ./lib/libcppunit-1.15.so contains undefined symbols:
-    #     51: 00000000     0 NOTYPE  GLOBAL DEFAULT   UND __aeabi_uidiv
-    #     60: 00000000     0 NOTYPE  GLOBAL DEFAULT   UND __aeabi_idiv
-    # SKIP: ./lib/libcppunit.a
     ## i686
     # SKIP: ./lib/librevenge-0.0.a
     # ERROR: ./lib/librevenge-0.0.so contains undefined symbols:
