@@ -44,6 +44,8 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --without-system-mdds
 --without-system-orcus
 --without-system-redland
+--without-system-libexttextcat
+--without-system-libnumbertext
 
 --disable-lpsolve
 --disable-coinmp
