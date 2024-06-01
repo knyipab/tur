@@ -17,6 +17,8 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --disable-nss
 --disable-curl
 --disable-libcmis
+--disable-lpsolve
+--disable-coinmp
 --enable-dbus
 --enable-gtk3
 --enable-gtk4
