@@ -1,4 +1,4 @@
-TERMUX_PKG_HOMEPAGE=https://wiki.documentfoundation.org/DLP/Libraries/libabw
+TERMUX_PKG_HOMEPAGE=https://wiki.documentfoundation.org/DLP/Libraries/libabw/
 TERMUX_PKG_DESCRIPTION="a library that parses the file format of AbiWord documents"
 TERMUX_PKG_LICENSE="MPL-2.0"
 TERMUX_PKG_MAINTAINER="@termux"
