@@ -9,7 +9,8 @@ TERMUX_PKG_SHA256=f6e2059cd85d07793e8d95828b2412906bdba8bf61a5f76b8c51907898481e
 # TODO: matches Archlinux deps:
 # TERMUX_PKG_DEPENDS="curl, hunspell, python, libwpd, libwps, neon, pango, nspr, libjpeg, libxrandr, libgl, redland, hyphen, lpsolve, gcc-libs, sh, graphite, icu, libxslt, lcms2, poppler, libvisio, libetonyek, libodfgen, libcdr, libmspub, harfbuzz-icu, nss, clucene, hicolor-icon-theme, desktop-file-utils, shared-mime-info, libpagemaker, libxinerama, libabw, libmwaw, libe-book, libcups, liblangtag, libexttextcat, liborcus, libwebp, libcmis, libtommath, libzmf, libatomic_ops, xmlsec, libnumbertext, gpgme, libfreehand, libstaroffice, libepubgen, libqxp, libepoxy, box2d, zxing-cpp, xdg-utils, libldap, fontconfig, zlib, libpng, freetype2, raptor, libxml2, cairo, libx11, expat, glib2, boost-libs, libtiff, dbus, glibc, librevenge, libxext, openjpeg2"
 # TODO: to be added
-TERMUX_PKG_DEPENDS="cups, openjdk-17, python, which"
+ONDEVICE_BUILD_DEPS="which, bison"
+TERMUX_PKG_DEPENDS="cups, openjdk-17, python, $ONDEVICE_BUILD_DEPS"
 TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --without-java
