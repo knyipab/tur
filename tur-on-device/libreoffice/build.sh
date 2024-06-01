@@ -47,6 +47,10 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --without-system-libexttextcat
 --without-system-libnumbertext
 --without-system-libtommath
+--without-system-libfixmath
+--without-system-frozen
+--without-system-zxcvbn
+--without-system-hsqldb
 
 --disable-lpsolve
 --disable-coinmp
