@@ -11,7 +11,7 @@ TERMUX_PKG_SHA256=f6e2059cd85d07793e8d95828b2412906bdba8bf61a5f76b8c51907898481e
 # TODO/FIXME: xdg-utils is unsafe for on device build
 # TODO: add back qt6 after qmake6 are available
 TERMUX_PKG_DEPENDS="which, bison, hunspell, python, pango, libjpeg-turbo, libxrandr, libhyphen, libgraphite, libicu, libxslt, libglvnd, poppler, harfbuzz-icu, hicolor-icon-theme, desktop-file-utils, shared-mime-info, libxinerama, cups, lcms2, libwebp, libtommath, libatomic-ops, xmlsec, gpgme, libepoxy, libzxing-cpp, fontconfig, openldap, zlib, libpng, freetype, libraptor2, libxml2, libcairo, libx11, boost, libtiff, libxext, openjpeg, dbus, glm, openssl, argon2"
-TERMUX_PKG_BUILD_DEPENDS="gtk4, gtk3, qt5-qtbase, qt5-qmake, qt5-qtx11extras, postgresql, unixodbc, mariadb"
+TERMUX_PKG_BUILD_DEPENDS="gtk4, gtk3, qt5-qtbase, qt5-qmake, qt5-qtx11extras, postgresql, unixodbc, mariadb, ant"
 TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --without-java
