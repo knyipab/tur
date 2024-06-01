@@ -20,6 +20,7 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --without-system-clucene
 --without-system-xmlsec
 --without-system-librevenge
+--without-system-libodfgen
 
 --disable-lpsolve
 --disable-coinmp
