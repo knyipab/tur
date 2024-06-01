@@ -47,6 +47,10 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --without-system-libexttextcat
 --without-system-libnumbertext
 
+--without-system-mariadb
+--without-system-odbc
+--without-system-postgresql
+
 --disable-lpsolve
 --disable-coinmp
 --enable-dbus
