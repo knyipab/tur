@@ -1,0 +1,13 @@
+diff --git a/svl/Library_svl.mk b/svl/Library_svl.mk
+index 04abb8c6c..48aad371e 100644
+--- a/svl/Library_svl.mk
++++ b/svl/Library_svl.mk
+@@ -21,8 +21,6 @@ $(eval $(call gb_Library_Library,svl))
+ 
+ $(eval $(call gb_Library_use_externals,svl,\
+     boost_headers \
+-    $(if $(filter LINUX MACOSX ANDROID iOS %BSD SOLARIS HAIKU,$(OS)), \
+-        curl) \
+     dtoa \
+     icu_headers \
+     icui18n \
