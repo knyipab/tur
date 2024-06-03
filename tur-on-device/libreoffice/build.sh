@@ -93,4 +93,5 @@ termux_step_pre_configure() {
 	# sed -i -e 's/linux-gnu\*|k\*bsd\*-gnu\*|linux-musl\*)/linux-*|k*bsd*-gnu*)/' configure.ac
 	# sed -i -e 's/linux-gnu\*|k\*bsd\*-gnu\*|linux-musl\*)/linux-*|k*bsd*-gnu*)/' configure
 	export QT6DIR=$TERMUX_PREFIX/lib/qt6
+	sed -i "109d" $TERMUX_PKG_SRCDIR/i18npool/source/breakiterator/data/sent.txt
 }
