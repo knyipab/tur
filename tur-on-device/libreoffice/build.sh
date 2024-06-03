@@ -15,6 +15,8 @@ TERMUX_PKG_BUILD_DEPENDS="gtk4, gtk3, qt5-qtbase, qt5-qmake, qt5-qtx11extras, po
 TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --host=$TERMUX_ARCH-linux
+--disable-sdremote
+--disable-sdremote-bluetooth
 --without-java
 --disable-nss
 --without-webdav
