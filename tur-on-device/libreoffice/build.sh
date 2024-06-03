@@ -17,6 +17,8 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --host=$TERMUX_ARCH-linux
 --disable-sdremote
 --disable-sdremote-bluetooth
+--enable-fuzzers
+
 --without-java
 --disable-nss
 --without-webdav
