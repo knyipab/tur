@@ -13,17 +13,8 @@ TERMUX_PKG_SHA256=f6e2059cd85d07793e8d95828b2412906bdba8bf61a5f76b8c51907898481e
 TERMUX_PKG_DEPENDS="which, bison, hunspell, python, pango, libjpeg-turbo, libxrandr, libhyphen, libgraphite, libicu, libxslt, libglvnd, poppler, harfbuzz-icu, hicolor-icon-theme, desktop-file-utils, shared-mime-info, libxinerama, cups, lcms2, libwebp, libtommath, libatomic-ops, xmlsec, gpgme, libepoxy, libzxing-cpp, fontconfig, openldap, zlib, libpng, freetype, libraptor2, libxml2, libcairo, libx11, boost, libtiff, libxext, openjpeg, dbus, glm, openssl, argon2, curl, libcurl"
 TERMUX_PKG_BUILD_DEPENDS="gtk4, gtk3, qt5-qtbase, qt5-qmake, qt5-qtx11extras, postgresql, unixodbc, mariadb"
 TERMUX_PKG_BUILD_IN_SRC=true
-if test $TERMUX_ARCH = arm; then
-	LIBREOFFICE_ARCH=armv7a-linux-bionic
-elif test $TERMUX_ARCH = aarch64; then
-	LIBREOFFICE_ARCH=aarch64-linux-bionic
-elif test $TERMUX_ARCH = x86_64; then
-	LIBREOFFICE_ARCH=x86_64-linux-bionic
-elif test $TERMUX_ARCH = i686; then
-	LIBREOFFICE_ARCH=i686-linux-bionic
-fi
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
---host=$LIBREOFFICE_ARCH
+--host=$TERMUX_ARCH-linux
 --without-java
 --disable-nss
 --without-webdav
