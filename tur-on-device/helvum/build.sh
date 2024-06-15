@@ -9,7 +9,6 @@ TERMUX_PKG_DEPENDS="gdk-pixbuf, glib, graphene, gtk4, hicolor-icon-theme, libadw
 TERMUX_PKG_BUILD_DEPENDS="appstream-glib"
 TERMUX_PKG_AUTO_UPDATE=true
 
-
 termux_setup_meson() {
 	termux_setup_ninja
 	local MESON_VERSION=1.4.0
