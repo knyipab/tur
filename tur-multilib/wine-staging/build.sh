@@ -4,6 +4,7 @@ TERMUX_PKG_LICENSE="LGPL-2.1"
 TERMUX_PKG_LICENSE_FILE="LICENSE, LICENSE.OLD, COPYING.LIB"
 TERMUX_PKG_MAINTAINER="@termux-user-repository"
 TERMUX_PKG_VERSION=9.7
+TERMUX_PKG_REVISION=1
 _VERSION_FOLDER="$(test "${TERMUX_PKG_VERSION:2:1}" = 0 && echo ${TERMUX_PKG_VERSION:0:3} || echo ${TERMUX_PKG_VERSION:0:2}x)"
 TERMUX_PKG_SRCURL=(https://dl.winehq.org/wine/source/${_VERSION_FOLDER}/wine-$TERMUX_PKG_VERSION.tar.xz)
 TERMUX_PKG_SRCURL+=(https://github.com/wine-staging/wine-staging/archive/v$TERMUX_PKG_VERSION.tar.gz)
@@ -75,6 +76,17 @@ exec_prefix=$TERMUX_PREFIX
 # FIXME: I'd like to compile it.
 # TERMUX_PKG_BLACKLISTED_ARCHES="arm"
 
+# Enable win64 on 64-bit arches.
+# TODO: Enable win32 after TUR has full support for mutilib
+if [ "$TERMUX_ARCH_BITS" = 64 ]; then
+	TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" --enable-win64"
+fi
+
+# Enable new WoW64 support on x86_64.
+if [ "$TERMUX_ARCH" = "x86_64" ]; then
+	TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" --enable-archs=i386,x86_64"
+fi
+
 termux_step_post_get_source() {
 	python ./wine-staging-$TERMUX_PKG_VERSION/staging/patchinstall.py --all
 }
@@ -122,12 +134,6 @@ termux_step_pre_configure() {
 	LDFLAGS="${LDFLAGS/-Wl,-z,relro,-z,now/}"
 
 	LDFLAGS+=" -landroid-spawn"
-
-	# Enable win64 on 64-bit arches.
-	# TODO: Enable win32 after TUR has full support for mutilib
-	if [ "$TERMUX_ARCH_BITS" = 64 ]; then
-		TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" --enable-win64"
-	fi
 }
 
 termux_step_make() {

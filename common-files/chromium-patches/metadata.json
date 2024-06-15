@@ -1,4 +1,7 @@
 {
+  "add-missing-deduction-guide/6478.patch": {
+    "start": 6478
+  },
   "add-missing-typename/5672.patch": {
     "start": 5672,
     "end": 5789
@@ -361,6 +364,9 @@
   "compiler-custom-rust-abi-target-triple/6312.patch": {
     "start": 6312
   },
+  "compiler-disable-warnings/6478.patch": {
+    "start": 6478
+  },
   "compiler-no-unused-but-set-variable/4389.patch": {
     "start": 4389,
     "end": 4472
@@ -410,7 +416,11 @@
     "end": 6260
   },
   "compiler-remove-unsupported-flags/6261.patch": {
-    "start": 6261
+    "start": 6261,
+    "end": 6477
+  },
+  "compiler-remove-unsupported-flags/6478.patch": {
+    "start": 6478
   },
   "compiler-use-android-target/4389.patch": {
     "start": 4389,
@@ -471,6 +481,9 @@
   },
   "dav1d-no-get-affinity/5249.patch": {
     "start": 4961
+  },
+  "dawn-aligned-alloc/6478.patch": {
+    "start": 6478
   },
   "dawn-fix-dynamic-loaded-libraries/4961.patch": {
     "start": 4961,
@@ -572,11 +585,17 @@
     "start": 4389,
     "end": 4389
   },
+  "remove-usage-std-format/6478.patch": {
+    "start": 6478
+  },
   "remove-usage-vector-three_way_compare/6167.patch": {
     "start": 6167
   },
   "remove-usage-vector-three_way_compare-2/6367.patch": {
     "start": 6367
+  },
+  "remove-usage-vector-three_way_compare-3/6478.patch": {
+    "start": 6478
   },
   "remove-usage-three_way_compare/6422.patch": {
     "start": 6422
@@ -586,7 +605,11 @@
     "end": 6225
   },
   "remove-xorg-from-build-deps-2/6255.patch": {
-    "start": 6255
+    "start": 6255,
+    "end": 6477
+  },
+  "remove-xorg-from-build-deps-2/6478.patch": {
+    "start": 6478
   },
   "resource_attribution-query_params-no-constexpr-operator-equal/6167.patch": {
     "start": 6167,
