@@ -5,7 +5,8 @@ TERMUX_PKG_LICENSE="GPL-3.0"
 TERMUX_PKG_VERSION=0.4.3
 TERMUX_PKG_SRCURL=https://github.com/saivert/pwvucontrol/releases/download/$TERMUX_PKG_VERSION/pwvucontrol-$TERMUX_PKG_VERSION.tar.xz
 TERMUX_PKG_SHA256=33af20bdda94a61f10efa0f74fa48ec8f4f94fb7ac3e3b83e23a63efa7fc6705
-TERMUX_PKG_DEPENDS="pipewire"
+TERMUX_PKG_DEPENDS="glib, gtk4, libadwaita, pipewire"
+TERMUX_PKG_BUILD_DEPENDS="glib-bin, glib-cross"
 TERMUX_PKG_AUTO_UPDATE=true
 
 termux_step_pre_configure() {
