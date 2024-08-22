@@ -15,7 +15,7 @@ termux_step_host_build() {
 }
 
 termux_step_make_install() {
-	local install_prefix="$TERMUX_PREFIX/opt/owasp-juice-shop"
+	local install_prefix="$TERMUX_PREFIX/opt/juice-shop"
 	rm -rf "$install_prefix"
 	mkdir -p "$install_prefix"
 	cp -Rf . $install_prefix/
