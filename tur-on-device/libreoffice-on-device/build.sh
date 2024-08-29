@@ -87,6 +87,9 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --with-system-cairo
 --with-system-libs
 --with-system-headers
+
+--disable-online-update
+--disable-breakpad
 "
 
 termux_step_pre_configure() {
