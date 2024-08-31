@@ -6,5 +6,6 @@ TERMUX_PKG_VERSION=0.6.7
 TERMUX_PKG_SRCURL=https://bitbucket.org/tagoh/liblangtag/downloads/liblangtag-${TERMUX_PKG_VERSION}.tar.bz2
 TERMUX_PKG_SHA256=5ed6bcd4ae3f3c05c912e62f216cd1a44123846147f729a49fb5668da51e030e
 TERMUX_PKG_DEPENDS="libxml2"
+TERMUX_PKG_EXTRA_CONFIGURE_ARGS="--disable-tests"
 
 # TODO: detect Archlinux update
