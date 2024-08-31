@@ -9,9 +9,9 @@ TERMUX_PKG_BUILD_IN_SRC=true
 
 # TODO: detect Archlinux update
 
-termux_step_configure() {
-	patch -Np1 -i "$TERMUX_PKG_BUILDER_DIR"/lpsolve-5.5.2.11-misc.patch
-}
+# termux_step_configure() {
+# 	patch -Np1 -i "$TERMUX_PKG_BUILDER_DIR"/lpsolve-5.5.2.11-misc.patch
+# }
 
 termux_step_make() {
 	cd lpsolve55
