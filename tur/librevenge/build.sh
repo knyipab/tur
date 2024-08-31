@@ -8,6 +8,7 @@ TERMUX_PKG_SHA256=106d0c44bb6408b1348b9e0465666fa83b816177665a22cd017e886c1aaeeb
 TERMUX_PKG_DEPENDS="zlib"
 TERMUX_PKG_BUILD_DEPENDS="boost, cppunit"
 
+
 # TODO: detect Archlinux update
 
 termux_step_pre_configure() {
