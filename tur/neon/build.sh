@@ -11,5 +11,6 @@ TERMUX_PKG_UPDATE_TAG_TYPE="newest-tag"
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="-W no-dev"
 
 termux_step_pre_configure() {
+	echo "$TERMUX_PKG_VERSION" > .version
 	autoreconf -fi
 }
