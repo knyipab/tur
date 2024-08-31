@@ -13,5 +13,6 @@ TERMUX_PKG_BUILD_IN_SRC=true
 # TODO: detect Archlinux update
 
 termux_step_pre_configure() {
-	export CFLAGS+=" -fcommon"
+	# avoid duplicated symbol errors
+	CFLAGS+=" -fcommon"
 }
