@@ -16,7 +16,7 @@ termux_step_make() {
 
 	cd ../lp_solve
 	sh -x ccc
-    cd ..
+	cd ..
 }
 
 
@@ -27,5 +27,4 @@ termux_step_make_install() {
 	install -m644 lp*.h "$TERMUX_PREFIX"/usr/include/lpsolve/
 
 	install -D -m644 README.txt -t "$TERMUX_PREFIX/usr/share/licenses/$TERMUX_PKG_NAME/"
-
 }
