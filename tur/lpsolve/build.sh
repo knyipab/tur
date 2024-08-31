@@ -10,6 +10,7 @@ TERMUX_PKG_BUILD_IN_SRC=true
 # TODO: detect Archlinux update
 
 termux_step_configure() {
+	:
 }
 
 termux_step_make() {
