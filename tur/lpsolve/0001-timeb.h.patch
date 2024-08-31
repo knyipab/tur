@@ -1,42 +1,13 @@
 diff --git a/lp_utils.c b/lp_utils.c
-index 418f7c8..489b880 100644
+index 418f7c8..fa7480d 100644
 --- a/lp_utils.c
 +++ b/lp_utils.c
-@@ -5,7 +5,38 @@
+@@ -5,7 +5,9 @@
  #include "lp_lib.h"
  #include "lp_utils.h"
  #include <time.h>
 +#ifndef __ANDROID__
  #include <sys/timeb.h>
-+#else
-+#include <sys/time.h>
-+struct timeb {
-+	time_t time;        /* Seconds since epoch, as from `time'.  */
-+	unsigned short int millitm; /* Additional milliseconds.  */
-+	short int timezone;     /* Minutes west of GMT.  */
-+	short int dstflag;      /* Nonzero if Daylight Savings Time used.  */
-+};
-+
-+int ftime(struct timeb *tb)
-+{
-+	struct timeval  tv;
-+	struct timezone tz;
-+
-+	if (gettimeofday (&tv, &tz) < 0)
-+		return -1;
-+
-+	tb->time    = tv.tv_sec;
-+	tb->millitm = (tv.tv_usec + 500) / 1000;
-+
-+	if (tb->millitm == 1000) {
-+		++tb->time;
-+		tb->millitm = 0;
-+	}
-+	tb->timezone = tz.tz_minuteswest;
-+	tb->dstflag  = tz.tz_dsttime;
-+
-+	return 0;
-+}
 +#endif
  #include "lp_bit.h"
  
