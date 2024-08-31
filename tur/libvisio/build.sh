@@ -10,3 +10,7 @@ TERMUX_PKG_BUILD_DEPENDS="boost, cppunit"
 
 
 # TODO: detect Archlinux update
+
+termux_step_pre_configure() {
+	LDFLAGS+=" $($CC -print-libgcc-file-name)"
+}
