@@ -1,6 +1,6 @@
 TERMUX_PKG_HOMEPAGE=http://lpsolve.sourceforge.net/
 TERMUX_PKG_DESCRIPTION="a Mixed Integer Linear Programming (MILP) solver"
-TERMUX_PKG_LICENSE="LGPL-2.1, GPL-2.0, BSD"
+TERMUX_PKG_LICENSE="LGPL-2.1"
 TERMUX_PKG_MAINTAINER="@termux-user-repository"
 TERMUX_PKG_VERSION=5.5.2.11
 TERMUX_PKG_SRCURL=https://downloads.sourceforge.net/project/lpsolve/lpsolve/${TERMUX_PKG_VERSION}/lp_solve_${TERMUX_PKG_VERSION}_source.tar.gz
