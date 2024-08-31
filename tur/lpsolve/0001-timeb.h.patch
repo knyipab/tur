@@ -1,14 +1,15 @@
 diff --git a/lp_utils.c b/lp_utils.c
-index 418f7c8..34b9c14 100644
+index 418f7c8..489b880 100644
 --- a/lp_utils.c
 +++ b/lp_utils.c
-@@ -5,7 +5,37 @@
+@@ -5,7 +5,38 @@
  #include "lp_lib.h"
  #include "lp_utils.h"
  #include <time.h>
 +#ifndef __ANDROID__
  #include <sys/timeb.h>
 +#else
++#include <sys/time.h>
 +struct timeb {
 +	time_t time;        /* Seconds since epoch, as from `time'.  */
 +	unsigned short int millitm; /* Additional milliseconds.  */
@@ -41,10 +42,10 @@ index 418f7c8..34b9c14 100644
  
  #ifdef FORTIFY
 diff --git a/shared/commonlib.c b/shared/commonlib.c
-index 5ab4f12..72e220b 100644
+index 5ab4f12..137eb3a 100644
 --- a/shared/commonlib.c
 +++ b/shared/commonlib.c
-@@ -6,7 +6,37 @@
+@@ -6,7 +6,38 @@
  #elif defined EnhTime
  # include <windows.h>
  #else
@@ -52,6 +53,7 @@ index 5ab4f12..72e220b 100644
 +#ifndef __ANDROID__
 +#include <sys/timeb.h>
 +#else
++#include <sys/time.h>
 +struct timeb {
 +	time_t time;        /* Seconds since epoch, as from `time'.  */
 +	unsigned short int millitm; /* Additional milliseconds.  */
