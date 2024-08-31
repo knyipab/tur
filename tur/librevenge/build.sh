@@ -7,7 +7,6 @@ TERMUX_PKG_SRCURL=https://sourceforge.net/projects/libwpd/files/librevenge/libre
 TERMUX_PKG_SHA256=106d0c44bb6408b1348b9e0465666fa83b816177665a22cd017e886c1aaeeb34
 TERMUX_PKG_DEPENDS="zlib"
 TERMUX_PKG_BUILD_DEPENDS="boost"
-TERMUX_PKG_EXTRA_CONFIGURE_ARGS="--disable-tests"
 
 # TODO: detect Archlinux update
 
