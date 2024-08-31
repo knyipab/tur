@@ -20,15 +20,15 @@ termux_step_make() {
 
 	cd ../lp_solve
 	sh -x ccc
-	cd ..
+	cd .
 }
 
 
 termux_step_make_install() {
-	install -dm755 "$TERMUX_PREFIX"/usr/{bin,lib,include/lpsolve}
-	install -m755 lp_solve/bin/ux*/lp_solve "$TERMUX_PREFIX"/usr/bin/
-	install -m755 lpsolve55/bin/ux*/liblpsolve55.so "$TERMUX_PREFIX"/usr/lib/
-	install -m644 lp*.h "$TERMUX_PREFIX"/usr/include/lpsolve/
+	install -dm755 "$TERMUX_PREFIX"/{bin,lib,include/lpsolve}
+	install -m755 lp_solve/bin/ux*/lp_solve "$TERMUX_PREFIX"/bin/
+	install -m755 lpsolve55/bin/ux*/liblpsolve55.so "$TERMUX_PREFIX"/lib/
+	install -m644 lp*.h "$TERMUX_PREFIX"/include/lpsolve/
 
-	install -D -m644 README.txt -t "$TERMUX_PREFIX/usr/share/licenses/$TERMUX_PKG_NAME/"
+	install -D -m644 README.txt -t "$TERMUX_PREFIX/share/licenses/$TERMUX_PKG_NAME/"
 }
