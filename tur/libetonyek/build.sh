@@ -10,3 +10,7 @@ TERMUX_PKG_BUILD_DEPENDS="boost, cppunit, glm, mdds"
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="--with-mdds=2.1"
 
 # TODO: detect Archlinux update
+
+termux_step_pre_configure() {
+	export CFLAGS+=" -fcommon"
+}
