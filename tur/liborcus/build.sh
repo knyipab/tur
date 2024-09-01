@@ -1,4 +1,4 @@
-TERMUX_PKG_HOMEPAGE="https://gitlab.com/orcus/orcus"
+TERMUX_PKG_HOMEPAGE="https://gitlab.com/orcus/orcus/"
 TERMUX_PKG_DESCRIPTION="File import filter library for spreadsheet documents."
 TERMUX_PKG_LICENSE="MPL-2.0"
 TERMUX_PKG_MAINTAINER="@termux-user-repository"
