@@ -7,5 +7,4 @@ TERMUX_PKG_SRCURL=https://dev-www.libreoffice.org/src/libmspub/libmspub-${TERMUX
 TERMUX_PKG_SHA256=ef36c1a1aabb2ba3b0bedaaafe717bf4480be2ba8de6f3894be5fd3702b013ba
 TERMUX_PKG_DEPENDS="libwpd, libicu, libxml2, librevenge, zlib"
 TERMUX_PKG_BUILD_DEPENDS="boost, libwpg"
-
 # TODO: detect Archlinux update
