@@ -1,6 +1,6 @@
 TERMUX_PKG_HOMEPAGE="https://sourceforge.net/projects/libebook/"
 TERMUX_PKG_DESCRIPTION="Library for import of reflowable e-book formats."
-TERMUX_PKG_LICENSE="LGPL2.1, MPL"
+TERMUX_PKG_LICENSE="LGPL-2.1, MPL-2.0"
 TERMUX_PKG_MAINTAINER="@termux-user-repository"
 TERMUX_PKG_VERSION=0.1.3
 TERMUX_PKG_SRCURL=https://sourceforge.net/projects/libebook/files//libe-book-${TERMUX_PKG_VERSION}/libe-book-${TERMUX_PKG_VERSION}.tar.xz
