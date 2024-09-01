@@ -1,0 +1,20 @@
+diff --git a/src/allocate.c b/src/allocate.c
+index 5e832ef..fe8320d 100644
+--- a/src/allocate.c
++++ b/src/allocate.c
+@@ -15,6 +15,15 @@
+ 	#include <stdlib.h>
+ #endif
+ 
++#if defined(__ANDROID__) && __ANDROID_API__ < 26
++void *aligned_alloc(size_t align, size_t size)
++{
++	void *result = NULL;
++	posix_memalign(&result, align, size);
++	return result;
++}
++#endif
++
+ #include <stdatomic.h>
+ #include <stdint.h>
+ 
