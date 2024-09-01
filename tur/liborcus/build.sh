@@ -7,4 +7,7 @@ TERMUX_PKG_SRCURL=https://gitlab.com/orcus/orcus/-/archive/${TERMUX_PKG_VERSION}
 TERMUX_PKG_SHA256=4fb632224aecc29e79c432f862c446b32f97b81d6855fa3773a2f11eda3d1c3b
 TERMUX_PKG_DEPENDS="boost, libixion, python, zlib"
 TERMUX_PKG_BUILD_DEPENDS="boost, mdds"
-# TODO: detect Archlinux update
+TERMUX_PKG_AUTO_UPDATE=true
+TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
+-DMDDS_INCLUDEDIR=$TERMUX_PREFIX/include/mdds-2.1
+"
