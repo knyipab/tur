@@ -12,3 +12,7 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 -DMDDS_INCLUDEDIR=$TERMUX_PREFIX/include/mdds-2.1
 -DIXION_INCLUDEDIR=$TERMUX_PREFIX/include/ixion-0.18
 "
+
+termux_step_pre_configure() {
+	LDFLAGS+=" -lboost_filesystem -lboost_system"
+}
