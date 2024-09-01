@@ -1,4 +1,4 @@
-TERMUX_PKG_HOMEPAGE="https://gitlab.com/ixion/ixion"
+TERMUX_PKG_HOMEPAGE="https://gitlab.com/ixion/ixion/blob/master/README.md"
 TERMUX_PKG_DESCRIPTION="A general purpose formula parser & interpreter"
 TERMUX_PKG_LICENSE="MPL-2.0"
 TERMUX_PKG_MAINTAINER="@termux-user-repository"
