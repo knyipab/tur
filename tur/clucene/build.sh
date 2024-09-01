@@ -11,8 +11,10 @@ TERMUX_PKG_BUILD_DEPENDS="boost, cmake"
 
 termux_step_post_get_source() {
 	# these patch files are designed for `patch -Np0`
-	for file in $TERMUX_PKG_SRCDIR/000{4,5,6,7,8}-*.patch; do
-		sed -i 's/^+++ /+++ a\//' "$file"
-		sed -i 's/^--- /--- b\//' "$file"
+	for num in {4..8}; do
+		for file in $TERMUX_PKG_SRCDIR/000"$num"-*.patch; do
+			sed -i 's/^+++ /+++ a\//' "$file"
+			sed -i 's/^--- /--- b\//' "$file"
+		done
 	done
 }
