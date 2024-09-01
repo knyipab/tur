@@ -7,5 +7,4 @@ TERMUX_PKG_SRCURL=https://kohei.us/files/orcus/src/liborcus-${TERMUX_PKG_VERSION
 TERMUX_PKG_SHA256=69ed26a00d4aaa7688e62a6e003cbc81928521a45e96605e53365aa499719e39
 TERMUX_PKG_DEPENDS="boost-libs, libixion, python, zlib"
 TERMUX_PKG_BUILD_DEPENDS="boost, mdds"
-
 # TODO: detect Archlinux update
