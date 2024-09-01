@@ -8,3 +8,7 @@ TERMUX_PKG_SHA256=a1a39ffcea3ff2a7a7aae0c23877ddf4918b554bf82b0de5d7ce8e7f61ea8e
 TERMUX_PKG_DEPENDS="doxygen, librevenge"
 TERMUX_PKG_BUILD_DEPENDS="librevenge"
 # TODO: detect Archlinux update
+
+termux_step_pre_configure() {
+	LDFLAGS+=" $($CC -print-libgcc-file-name)"
+}
