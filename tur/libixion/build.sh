@@ -7,5 +7,4 @@ TERMUX_PKG_SRCURL="https://gitlab.com/ixion/ixion/-/archive/${TERMUX_PKG_VERSION
 TERMUX_PKG_SHA256=b5b67ea7fc631a0fda4fff3123f0cc2e3831849bdd8fbae8443be0766a77f243
 TERMUX_PKG_DEPENDS="boost, python"
 TERMUX_PKG_BUILD_DEPENDS="boost, mdds, libspdlog"
-TERMUX_PKG_EXTRA_CONFIGURE_ARGS="--disable-static"
 TERMUX_PKG_AUTO_UPDATE=true
