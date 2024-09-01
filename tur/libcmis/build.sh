@@ -8,7 +8,7 @@ TERMUX_PKG_SHA256=1b5c2d7258ff93eb5f9958ff0e4dfd7332dc75a071bb717dde2217a26602a6
 TERMUX_PKG_DEPENDS="boost, curl, libxml2"
 TERMUX_PKG_BUILD_DEPENDS="boost-headers, cppunit"
 TERMUX_PKG_AUTO_UPDATE=true
-TERMUX_PKG_EXTRA_CONFIGURE_ARGS="--without-man"
+TERMUX_PKG_EXTRA_CONFIGURE_ARGS="--without-man --disable-test"
 
 termux_step_pre_configure() {
 	export BOOST_ROOT=$TERMUX_PREFIX
