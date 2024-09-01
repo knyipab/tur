@@ -7,13 +7,11 @@ TERMUX_PKG_SRCURL=https://downloads.sourceforge.net/clucene/clucene-core-${TERMU
 TERMUX_PKG_SHA256=ddfdc433dd8ad31b5c5819cc4404a8d2127472a3b720d3e744e8c51d79732eab
 TERMUX_PKG_DEPENDS="zlib"
 TERMUX_PKG_BUILD_DEPENDS="boost, cmake"
-
 # TODO: detect Archlinux update
-
 
 termux_step_post_get_source() {
 	# these patch files are designed for `patch -Np0`
-	for file in $TERMUX_PKG_SRCDIR/000{4,5,6,7,8}*.patch; do
+	for file in $TERMUX_PKG_SRCDIR/000{4,5,6,7,8}-*.patch; do
 		sed -i 's/^+++ /+++ a\//' "$file"
 		sed -i 's/^--- /--- b\//' "$file"
 	done
