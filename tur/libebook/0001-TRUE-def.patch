@@ -1,13 +1,14 @@
 diff --git a/src/lib/EBOOKCharsetConverter.cpp b/src/lib/EBOOKCharsetConverter.cpp
-index 0d85fa3..c9d34c8 100644
+index 0d85fa3..3492140 100644
 --- a/src/lib/EBOOKCharsetConverter.cpp
 +++ b/src/lib/EBOOKCharsetConverter.cpp
-@@ -9,6 +9,9 @@
+@@ -9,6 +9,10 @@
  
  #include <cassert>
  #include <string>
 +#ifdef __TERMUX__
-+#include <glib.h>
++#define TRUE 1
++#define FALSE 0
 +#endif
  
  #include <unicode/ucsdet.h>
