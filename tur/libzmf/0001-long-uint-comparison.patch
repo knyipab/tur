@@ -1,0 +1,13 @@
+diff --git a/src/lib/BMIParser.cpp b/src/lib/BMIParser.cpp
+index f7bc946..9ccb7bd 100644
+--- a/src/lib/BMIParser.cpp
++++ b/src/lib/BMIParser.cpp
+@@ -518,7 +518,7 @@ std::vector<uint8_t> BMIParser::readData(unsigned endOffset)
+ {
+   std::vector<uint8_t> data;
+ 
+-  while (m_input->tell() < endOffset)
++  while (m_input->tell() < static_cast<long>(endOffset))
+   {
+     auto blockSize = readU16(m_input);
+ 
