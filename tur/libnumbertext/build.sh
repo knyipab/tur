@@ -8,6 +8,6 @@ TERMUX_PKG_SHA256=80aad7cab123edc614f904d9f145d1d15cf465084a1a15fca2117525dc7460
 TERMUX_PKG_AUTO_UPDATE=true
 
 termux_step_pre_configure() {
-	autoreconf -vfi
 	LDFLAGS+=" $($CC -print-libgcc-file-name)"
+	autoreconf -vfi
 }
