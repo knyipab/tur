@@ -1,6 +1,6 @@
 TERMUX_PKG_HOMEPAGE="https://github.com/tdf/libcmis"
 TERMUX_PKG_DESCRIPTION="a C/C++ client library for the CMIS protocol"
-TERMUX_PKG_LICENSE="GPL2, LGPL2.1, MPL"
+TERMUX_PKG_LICENSE="GPL2, LGPL2.1, MPL-2.0"
 TERMUX_PKG_MAINTAINER="@termux-user-repository"
 TERMUX_PKG_VERSION=0.6.2
 TERMUX_PKG_SRCURL="https://github.com/tdf/libcmis/releases/download/v${TERMUX_PKG_VERSION}/libcmis-${TERMUX_PKG_VERSION}.tar.xz"
