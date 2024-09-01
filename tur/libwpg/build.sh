@@ -9,3 +9,7 @@ TERMUX_PKG_DEPENDS="libwpd, perl, librevenge"
 TERMUX_PKG_BUILD_DEPENDS="boost"
 
 # TODO: detect Archlinux update
+
+termux_step_pre_configure() {
+	LDFLAGS+=" $($CC -print-libgcc-file-name)"
+}
