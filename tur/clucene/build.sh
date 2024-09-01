@@ -7,4 +7,5 @@ TERMUX_PKG_SRCURL=https://downloads.sourceforge.net/clucene/clucene-core-${TERMU
 TERMUX_PKG_SHA256=ddfdc433dd8ad31b5c5819cc4404a8d2127472a3b720d3e744e8c51d79732eab
 TERMUX_PKG_DEPENDS="zlib"
 TERMUX_PKG_BUILD_DEPENDS="boost, cmake"
+
 # TODO: detect Archlinux update
