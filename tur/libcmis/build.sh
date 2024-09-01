@@ -9,3 +9,7 @@ TERMUX_PKG_DEPENDS="boost, curl, libxml2"
 TERMUX_PKG_BUILD_DEPENDS="boost, cppunit"
 TERMUX_PKG_AUTO_UPDATE=true
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="--without-man"
+
+termux_step_pre_configure() {
+	LDFLAGS+=" -lboost_date_time"
+}
