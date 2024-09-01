@@ -6,7 +6,7 @@ TERMUX_PKG_VERSION=0.6.2
 TERMUX_PKG_SRCURL="https://github.com/tdf/libcmis/releases/download/v${TERMUX_PKG_VERSION}/libcmis-${TERMUX_PKG_VERSION}.tar.xz"
 TERMUX_PKG_SHA256=1b5c2d7258ff93eb5f9958ff0e4dfd7332dc75a071bb717dde2217a26602a644
 TERMUX_PKG_DEPENDS="boost, curl, libxml2"
-TERMUX_PKG_BUILD_DEPENDS="boost, cppunit"
+TERMUX_PKG_BUILD_DEPENDS="boost-headers, cppunit"
 TERMUX_PKG_AUTO_UPDATE=true
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="--without-man"
 
