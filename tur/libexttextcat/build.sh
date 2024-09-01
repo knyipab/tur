@@ -1,6 +1,6 @@
 TERMUX_PKG_HOMEPAGE="https://wiki.documentfoundation.org/Libexttextcat"
 TERMUX_PKG_DESCRIPTION="N-Gram-Based Text Categorization library primarily intended for language guessing"
-TERMUX_PKG_LICENSE="BSD-3"
+TERMUX_PKG_LICENSE="BSD"
 TERMUX_PKG_MAINTAINER="@termux-user-repository"
 TERMUX_PKG_VERSION=3.4.7
 TERMUX_PKG_SRCURL=https://dev-www.libreoffice.org/src/libexttextcat-${TERMUX_PKG_VERSION}.tar.xz
