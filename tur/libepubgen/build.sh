@@ -8,3 +8,7 @@ TERMUX_PKG_SHA256=03e084b994cbeffc8c3dd13303b2cb805f44d8f2c3b79f7690d7e3fc7f6215
 TERMUX_PKG_DEPENDS="librevenge"
 TERMUX_PKG_BUILD_DEPENDS="boost, cppunit, libxml2"
 # TODO: detect Archlinux update
+
+termux_step_pre_configure() {
+	LDFLAGS+=" $($CC -print-libgcc-file-name)"
+}
