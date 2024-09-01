@@ -1,0 +1,13 @@
+diff --git a/src/core.h b/src/core.h
+index fe495c6..baaa5b3 100644
+--- a/src/core.h
++++ b/src/core.h
+@@ -47,7 +47,7 @@
+ #elif defined( __EMSCRIPTEN__ )
+ 	#define B2_CPU_WASM
+ #else
+-	#error Unsupported CPU
++	// #error Unsupported CPU
+ #endif
+ 
+ // Define compiler
