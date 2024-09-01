@@ -9,3 +9,9 @@ TERMUX_PKG_DEPENDS="zlib"
 TERMUX_PKG_BUILD_DEPENDS="boost, cmake"
 
 # TODO: detect Archlinux update
+
+termux_step_post_get_source() {
+    # these patch files are designed for `patch -Np0`
+    sed -i 's/^+++ /+++ a\//' $TERMUX_PKG_SRCDIR/000{4,5,6,7,8}*.patch
+    sed -i 's/^--- /--- b\//' $TERMUX_PKG_SRCDIR/000{4,5,6,7,8}*.patch
+}
