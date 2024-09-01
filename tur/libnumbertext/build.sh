@@ -6,3 +6,7 @@ TERMUX_PKG_VERSION=1.0.11
 TERMUX_PKG_SRCURL=https://github.com/Numbertext/libnumbertext/archive/${TERMUX_PKG_VERSION}.tar.gz
 TERMUX_PKG_SHA256=80aad7cab123edc614f904d9f145d1d15cf465084a1a15fca2117525dc746034
 TERMUX_PKG_AUTO_UPDATE=true
+
+termux_step_pre_configure() {
+	autoreconf -vfi
+}
