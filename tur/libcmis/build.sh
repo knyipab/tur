@@ -10,10 +10,7 @@ TERMUX_PKG_BUILD_DEPENDS="boost-headers, cppunit"
 TERMUX_PKG_AUTO_UPDATE=true
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --without-man
---disable-test
---with-boost-filesystem=boost_filesystem
---with-boost-system=boost_system
---with-boost-date-time=boost_date_time
+--disable-static
 "
 
 termux_step_pre_configure() {
