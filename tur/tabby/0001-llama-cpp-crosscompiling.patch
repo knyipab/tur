@@ -1,11 +1,12 @@
 diff --git a/crates/llama-cpp-server/build.rs b/crates/llama-cpp-server/build.rs
-index 35a4edb..c4a78f0 100644
+index 35a4edb..4b080db 100644
 --- a/crates/llama-cpp-server/build.rs
 +++ b/crates/llama-cpp-server/build.rs
-@@ -12,6 +12,11 @@ fn main() {
+@@ -12,6 +12,12 @@ fn main() {
      config.profile("Release");
      config.define("GGML_NATIVE", "OFF");
      config.define("GGML_NATIVE_DEFAULT", "OFF");
++    config.define("CMAKE_SYSTEM_NAME", "Android");
 +    // config.define("CMAKE_CROSSCOMPILING", "ON");
 +    // config.define("GGML_AVX", "OFF");
 +    // config.define("GGML_AVX2", "OFF");

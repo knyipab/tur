@@ -17,9 +17,7 @@ termux_step_pre_configure() {
 	# CMake Error at /home/builder/.termux-build/_cache/cmake-3.30.3/share/cmake-3.30/Modules/Platform/Android-Determine.cmake:218 (message):
 	# Android: Neither the NDK or a standalone toolchain was found.
 	export TARGET_CMAKE_TOOLCHAIN_FILE="${TERMUX_PKG_BUILDDIR}/android.toolchain.cmake"
-	cat <<- EOF >  "${TERMUX_PKG_BUILDDIR}/android.toolchain.cmake"
-		set ( CMAKE_SYSTEM_NAME "Android" )
-	EOF
+	touch "${TERMUX_PKG_BUILDDIR}/android.toolchain.cmake"
 
 	export RUSTFLAGS+=" -C link-arg=$(clang -print-libgcc-file-name)"
 }
