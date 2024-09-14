@@ -18,6 +18,7 @@ termux_step_pre_configure() {
 	# Android: Neither the NDK or a standalone toolchain was found.
 	export TARGET_CMAKE_TOOLCHAIN_FILE="${TERMUX_PKG_BUILDDIR}/android.toolchain.cmake"
 	cat <<- EOF >  "${TERMUX_PKG_BUILDDIR}/android.toolchain.cmake"
+		set ( CMAKE_SYSTEM_NAME "Android" )
 		set ( CMAKE_CROSSCOMPILING ON )
 	EOF
 
