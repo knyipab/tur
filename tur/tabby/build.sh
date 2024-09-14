@@ -1,0 +1,29 @@
+TERMUX_PKG_HOMEPAGE=https://tabby.tabbyml.com/
+TERMUX_PKG_DESCRIPTION="Self-hosted AI coding assistant"
+TERMUX_PKG_LICENSE="Apache-2.0"
+TERMUX_PKG_MAINTAINER="@termux-user-repository"
+TERMUX_PKG_VERSION=0.17.0
+TERMUX_PKG_SRCURL=git+https://github.com/TabbyML/tabby
+TERMUX_PKG_DEPENDS="graphviz, libopenblas, libsqlite"
+TERMUX_PKG_BUILD_IN_SRC=true
+TERMUX_PKG_AUTO_UPDATE=true
+TERMUX_PKG_UPDATE_TAG_TYPE="latest-release-tag"
+
+termux_step_pre_configure() {
+	termux_setup_rust
+	termux_setup_cmake
+
+	# Dummy CMake toolchain file to workaround build error:
+	# CMake Error at /home/builder/.termux-build/_cache/cmake-3.30.3/share/cmake-3.30/Modules/Platform/Android-Determine.cmake:218 (message):
+	# Android: Neither the NDK or a standalone toolchain was found.
+	export TARGET_CMAKE_TOOLCHAIN_FILE="${TERMUX_PKG_BUILDDIR}/android.toolchain.cmake"
+	cat <<- EOF >  "${TERMUX_PKG_BUILDDIR}/android.toolchain.cmake"
+		set ( CMAKE_CROSSCOMPILING ON )
+	EOF
+
+	export RUSTFLAGS+=" -C link-arg=$(clang -print-libgcc-file-name)"
+}
+
+termux_step_make() {
+	cargo build --jobs $TERMUX_PKG_MAKE_PROCESSES --target $CARGO_TARGET_NAME --release
+}
