@@ -21,11 +21,17 @@ termux_step_pre_configure() {
 	export TARGET_CMAKE_TOOLCHAIN_FILE="${TERMUX_PKG_BUILDDIR}/android.toolchain.cmake"
 	touch "${TERMUX_PKG_BUILDDIR}/android.toolchain.cmake"
 
-	RUSTFLAGS+=" -C link-arg=$($CC -print-libgcc-file-name)"
+	if [ "$TERMUX_ARCH" = "x86_64" ]; then
+		RUSTFLAGS+=" -C link-arg=$($CC -print-libgcc-file-name)"
+	fi
 
 	LDFLAGS+=" -fopenmp -static-openmp"
 }
 
 termux_step_make() {
 	cargo build --jobs $TERMUX_PKG_MAKE_PROCESSES --target $CARGO_TARGET_NAME --release
+}
+
+termux_step_make_install() {
+	install -Dm700 target/release/tabby $TERMUX_PREFIX/bin/
 }
