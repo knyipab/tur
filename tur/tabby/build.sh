@@ -9,7 +9,7 @@ TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_AUTO_UPDATE=true
 TERMUX_PKG_UPDATE_TAG_TYPE="latest-release-tag"
 # simd-json v0.13.10 fail to compile for i686 with error related to avx2 instructions
-TERMUX_PKG_BLACKLISTED_ARCHES="i686"
+# TERMUX_PKG_BLACKLISTED_ARCHES="i686"
 
 termux_step_pre_configure() {
 	termux_setup_rust
