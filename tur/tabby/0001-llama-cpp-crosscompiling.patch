@@ -1,5 +1,5 @@
 diff --git a/crates/llama-cpp-server/build.rs b/crates/llama-cpp-server/build.rs
-index 35a4edb..bde09e0 100644
+index 35a4edb..3837363 100644
 --- a/crates/llama-cpp-server/build.rs
 +++ b/crates/llama-cpp-server/build.rs
 @@ -12,6 +12,14 @@ fn main() {
@@ -7,9 +7,9 @@ index 35a4edb..bde09e0 100644
      config.define("GGML_NATIVE", "OFF");
      config.define("GGML_NATIVE_DEFAULT", "OFF");
 +    config.define("GGML_BLAS", "ON");
-+    config.define("DGGML_BLAS_VENDOR", "OpenBLAS");
++    config.define("GGML_BLAS_VENDOR", "OpenBLAS");
 +    config.define("GGML_OPENMP", "ON");
-+    config.define("GGML_AVX", "ON");
++    config.define("GGML_AVX", "OFF");
 +    config.define("GGML_AVX2", "OFF");
 +    config.define("GGML_AVX512", "OFF");
 +    config.define("GGML_FMA", "OFF");
