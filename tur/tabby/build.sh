@@ -9,7 +9,8 @@ TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_AUTO_UPDATE=true
 TERMUX_PKG_UPDATE_TAG_TYPE="latest-release-tag"
 # simd-json v0.13.10 fail to compile for i686 with error related to avx2 instructions
-TERMUX_PKG_BLACKLISTED_ARCHES="i686"
+# ARM_NEON is not supported by arm, therefore llama.cpp/ggml uses undeclared identifier 'vld1q_f16'
+TERMUX_PKG_BLACKLISTED_ARCHES="arm, i686"
 
 termux_step_pre_configure() {
 	termux_setup_rust
@@ -33,5 +34,5 @@ termux_step_make() {
 }
 
 termux_step_make_install() {
-	install -Dm700 target/release/tabby $TERMUX_PREFIX/bin/
+	install -Dm700 target/${CARGO_TARGET_NAME}/release/tabby $TERMUX_PREFIX/bin/
 }
