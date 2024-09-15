@@ -13,6 +13,8 @@ TERMUX_PKG_UPDATE_TAG_TYPE="latest-release-tag"
 TERMUX_PKG_BLACKLISTED_ARCHES="arm, i686"
 
 termux_step_pre_configure() {
+	LDFLAGS+=" $($CC -print-libgcc-file-name)"
+
 	termux_setup_rust
 	termux_setup_cmake
 
