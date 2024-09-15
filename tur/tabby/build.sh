@@ -20,6 +20,8 @@ termux_step_pre_configure() {
 	touch "${TERMUX_PKG_BUILDDIR}/android.toolchain.cmake"
 
 	export RUSTFLAGS+=" -C link-arg=$(clang -print-libgcc-file-name)"
+	
+	LDFLAGS+=" -fopenmp -static-openmp"
 }
 
 termux_step_make() {
