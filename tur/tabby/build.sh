@@ -22,14 +22,11 @@ termux_step_pre_configure() {
 	export TARGET_CMAKE_TOOLCHAIN_FILE="${TERMUX_PKG_BUILDDIR}/android.toolchain.cmake"
 	touch "${TERMUX_PKG_BUILDDIR}/android.toolchain.cmake"
 
-	if [ "$TERMUX_ARCH" = "x86_64" ]; then
-		RUSTFLAGS+=" -C link-arg=$($CC -print-libgcc-file-name)"
-	fi
-
 	LDFLAGS+=" -fopenmp -static-openmp"
 }
 
 termux_step_make() {
+	RUSTFLAGS+=" -C link-arg=$($CC -print-libgcc-file-name)"
 	cargo build --jobs $TERMUX_PKG_MAKE_PROCESSES --target $CARGO_TARGET_NAME --release
 }
 
