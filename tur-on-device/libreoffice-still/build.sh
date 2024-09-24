@@ -144,5 +144,5 @@ termux_step_pre_configure() {
 }
 
 termux_step_make_install() {
-	make distro-pack-install
+	make DESTDIR="/" distro-pack-install
 }
