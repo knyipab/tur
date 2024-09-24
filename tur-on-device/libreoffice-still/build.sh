@@ -146,5 +146,5 @@ termux_step_pre_configure() {
 termux_step_make_install() {
 	mkdir -p ./fakeinstall
 	make DESTDIR="./fakeinstall" distro-pack-install
-	mv fakeinstall/data/* /data
+	mv -r fakeinstall/data/* /data
 }
