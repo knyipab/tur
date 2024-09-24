@@ -5,22 +5,29 @@ TERMUX_PKG_MAINTAINER="@termux"
 TERMUX_PKG_VERSION=24.2.6.2
 TERMUX_PKG_SRCURL=https://download.documentfoundation.org/libreoffice/src/${TERMUX_PKG_VERSION%.*}/libreoffice-$TERMUX_PKG_VERSION.tar.xz
 TERMUX_PKG_SHA256=f6ea4df022696065b5dcdca4e28bf06906ac852df4ba6dc50aa8fe59c8e11db3
-# Ref: https://gitlab.archlinux.org/archlinux/packaging/packages/libreoffice-still/-/blob/main/PKGBUILD?ref_type=heads
 TERMUX_PKG_DEPENDS="mdds, which, bison, hunspell, python, pango, libjpeg-turbo, libxrandr, libhyphen, libgraphite, libicu, libxslt, libglvnd, poppler, harfbuzz-icu, hicolor-icon-theme, desktop-file-utils, shared-mime-info, libxinerama, cups, littlecms, libwebp, libtommath, libatomic-ops, xmlsec, gpgme, libepoxy, libzxing-cpp, fontconfig, openldap, zlib, libpng, freetype, libraptor2, libxml2, libcairo, libx11, boost, libtiff, libxext, openjpeg, dbus, glm, openssl, argon2, curl, libcurl, libwpd, libwps, libneon, libnspr, redland, lpsolve, libvisio, libetonyek, libodfgen, libcdr, libmspub, libnss, clucene, libpagemaker, libabw, libmwaw, libe-book, liblangtag, libexttextcat, liborcus, libcmis, libzmf, libnumbertext, libfreehand, libstaroffice, libepubgen, libqxp, libexpat, librevenge, libwpg, xsltproc, libxml2-utils, libtommath-static, gobject-introspection, g-ir-scanner"
 TERMUX_PKG_BUILD_DEPENDS="cppunit, gtk4, gtk3, qt6-qtbase, postgresql, unixodbc, mariadb, boost, boost-headers, icu-devtools, openjdk-17, openjdk-17-x, ant"
 TERMUX_PKG_RECOMMENDS="openjdk-17, openjdk-17-x, gtk4, gtk3, qt6-qtbase, qt6-qtmultimedia"
 TERMUX_PKG_BUILD_IN_SRC=true
-# TODO: add back qt6-qtmultimedia
-# TODO: see if add back qt5-qtbase, qt5-qmake, qt5-qtx11extras
-# TODO: add junit pacakge for java unit test and remove --without-junit
-# TODO: revise beanshell needs to include bsh.jar and then replace --without-system-beanshell with --with-system-beanshell
+TERMUX_PKG_BLACKLISTED_ARCHES="arm, i686"
+# Ref: https://gitlab.archlinux.org/archlinux/packaging/packages/libreoffice-still/-/blob/main/PKGBUILD?ref_type=heads
+
+# TODO: patch and remove TERMUX_PKG_BLACKLISTED_ARCHES
+# TODO: remove --disable-skia, some vulkan related compilation error I couldn't solve.
+# TODO: add back qt6-qtmultimedia, which currently breaks tur-on-device building by installing subpackage of deps and conflicting woth other deps.
+# TODO: see if we want to add back qt5-qtbase, qt5-qmake, qt5-qtx11extras, some qt5 compilation to be fix.
+# TODO: see if we want to add junit pacakge for java unit test and remove --without-junit
 # TODO: replace --enable-debug with --enable-release-build
-# TODO: replace --without-system-xmlsec by --with-system-xmlsec
-## Variables for building on phone:
+# TODO: replace --without-system-xmlsec by --with-system-xmlsec whwn xmlsec-nss becomes available by PR
+
+## Set variables for building on my phone:
 # TERMUX_PREFIX="$PREFIX"
 # TERMUX_ARCH="aarch64"
 # TERMUX_HOST_PLATFORM="$TERMUX_ARCH-linux-android"
-TERMUX_PKG_EXTRA_MAKE_ARGS="--trace"
+# TERMUX_PKG_MAKE_PROCESSES=0
+# TERMUX_ON_DEVICE_BUILD="true"
+
+# TERMUX_PKG_EXTRA_MAKE_ARGS="--trace"
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --enable-debug
 
@@ -29,7 +36,7 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 
 CC=$TERMUX_HOST_PLATFORM-clang
 CXX=$TERMUX_HOST_PLATFORM-clang++
---with-parallelism=0
+--with-parallelism=$TERMUX_PKG_MAKE_PROCESSES
 --host=$TERMUX_ARCH-linux
 
 --disable-sdremote
@@ -127,8 +134,9 @@ boost_cv_lib_tag=
 "
 
 termux_step_pre_configure() {
-	chmod +x ./solenv/bin/*
-	termux-fix-shebang ./solenv/bin/*
+	if [ "$TERMUX_ON_DEVICE_BUILD" = "true" ]; then
+		termux-fix-shebang ./solenv/bin/*
+	fi
 	export CLUCENE_CFLAGS=" -std=c++11"
 	export qt6_libexec_dirs="$TERMUX_PREFIX/lib/qt6"
 	export LDFLAGS+=" -Wl,--undefined-version"
@@ -136,5 +144,5 @@ termux_step_pre_configure() {
 }
 
 termux_step_make_install() {
-	make DESTDIR="$TERMUX_PREFIX" distro-pack-install
+	make distro-pack-install
 }
