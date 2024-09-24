@@ -144,7 +144,8 @@ termux_step_pre_configure() {
 }
 
 termux_step_make_install() {
-	mkdir -p ./fakeinstall
-	make DESTDIR="./fakeinstall" distro-pack-install
-	mv -r fakeinstall/data/* /data
+	mkdir -p "$TERMUX_PKG_SRCDIR/fakeinstall"
+	make DESTDIR="$TERMUX_PKG_SRCDIR/fakeinstall" distro-pack-install
+	ls -la "$TERMUX_PKG_SRCDIR/fakeinstall"
+	mv -r "$TERMUX_PKG_SRCDIR/fakeinstall"/data/* /data
 }
